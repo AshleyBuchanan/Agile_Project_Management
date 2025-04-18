@@ -1,0 +1,11 @@
+{
+  "name": "agile_project_management",
+  "version": "1.0.0",
+  "description": "my implementation of a Jira-like tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ashley Buchanan",
+  "license": "ISC"
+}
