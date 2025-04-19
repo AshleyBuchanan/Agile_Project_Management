@@ -5,6 +5,8 @@
 body {
     margin: 8px 0;
     width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 nav {
@@ -23,7 +25,7 @@ nav {
 
 .bubble {
     font-size: small;
-    border-radius: 1px;
+    border-radius: 2px;
     padding: 1px 8px 3px 8px;
     box-shadow: -.25px 1px 1px hsl(210, 100%, 36%);
     background-color: hsl(210, 100%, 36%);
@@ -43,7 +45,8 @@ nav {
 }
 
 input[type='search'] {
-    border-radius: 1px;
+    border-radius: 2px;
+    border-color: hsl(210, 100%, 36%);
     background-color: lightslategrey;
     color: whitesmoke;
 }
