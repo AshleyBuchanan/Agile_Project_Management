@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="/nav.css">
     <link rel="stylesheet" href="/dashboards.css">
     <link rel="stylesheet" href="/panels.css">
+    <link rel="stylesheet" href="/cards.css">
 </head>
 
 <body>
     <nav>
         <img width="35px" src="/agileImage.png" alt="">
         <div class="spacer"></div>
-        <div class="drop-down">Dashboards</div>
+        <div class="drop-down active">Dashboards</div>
         <div class="drop-down">Projects</div>
         <div class="drop-down">Issues</div>
         <div class="drop-down">Boards</div>
@@ -51,17 +52,35 @@
             <div class="collapse"><span class="icon">&laquo;</span></div>
         </section>
         <div class="main-container">
-            <div class="panel-block">
-                <!-- Header row with panel titles -->
-                <div class="panel-row">
-                    <div class="panel-header">
-                        <% for(let i=0; i<7; i++){ %>
-                            <div class="panel-column">
-                                <div class="panel-title"><%- panelNames[i] %></div>
+            <div class="top-level-1">
+                <span class="left">FM FY25 Q3</span>
+                <span class="middle">&#128337; 10 days remaining</span>
+                <div class="bubble-long inactive">Complete sprint</div>
+                <span class="right"></span>
+                <div class="bubble-long">Links Hierarchy</div>
+                <div class="bubble-long">Board</div> 
+                <div class="bubble-long">&circlearrowleft;</div> 
+            </div>
+            <div class="top-level-2">
+                <span class="quick-filter">QUICK FILTERS:</span>
+                <% for (let i=0; i<shortcuts.length; i++){ %>
+                    <div class="bubble-long"><%- shortcuts[i] %></div>
+                <% } %>
+            </div>
+            <div class="top-level-3">
+                               <!-- Header row with panel titles -->
+                               <div class="panel-row">
+                                <div class="panel-header">
+                                    <% for(let i=0; i<7; i++){ %>
+                                        <div class="panel-column">
+                                            <div class="panel-title"><%- panelNames[i] %></div>
+                                        </div>
+                                    <% } %>
+                                </div>
                             </div>
-                        <% } %>
-                    </div>
-                </div>
+            </div>
+            <div class="panel-block">
+ 
                 
                 <!-- Each project gets its own row of 7 panels -->
                 <% for (let j=0; j<user.projects.length; j++){ %>

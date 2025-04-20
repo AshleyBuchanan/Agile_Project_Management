@@ -8,8 +8,15 @@ nav {
 }
 
 .drop-down {
+    text-align: center;
     display: inline-block;
     cursor: pointer;
+    padding: 13px 8px;
+}
+
+.drop-down:hover,
+.drop-down.active {
+    background-color: var(--panel-grey-selected);
 }
 
 .bubble {
@@ -27,7 +34,8 @@ nav {
 .spacer {
     background-color: black;
     display: inline-block;
-    width: 15%;
+    min-width: 226px;
+    max-width: 226px;
 }
 
 .big-spacer {

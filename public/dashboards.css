@@ -34,6 +34,7 @@ section.selector-block {
     cursor: pointer;
 }
 
+.selector:hover,
 .selector.active {
     background-color: var(--panel-grey-selected);
 }
