@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agile Project Manager</title>
     <link rel="icon" href="/agileImage.png" type="image/x-icon">
+    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/nav.css">
     <link rel="stylesheet" href="/dashboards.css">
+    <link rel="stylesheet" href="/panels.css">
 </head>
 
 <body>
@@ -20,23 +22,65 @@
         <div class="drop-down">Boards</div>
         <div class="drop-down">Plans</div>
         <div class="drop-down">Links</div>
+        <div class="drop-down bubble">Create</div>
         <div class="big-spacer"></div>
         <input type="search" placeholder="&#x1F50D; Search">
         <img width="35px" src="/bullhorn.png" alt="">
         <img width="35px" src="/help.png" alt="">
         <img width="35px" src="/settings.png" alt="">
-        <div class="drop-down bubble">Jasdeep</div>
+        <div class="drop-down bubble"><%- user.name %></div>
     </nav>
-    <section class="dashboard">
-        <header>
-            <img width="55px" src="/fm_be_web.png" alt="">
-            FM BE and Web
-        </header>
-        <div class="selector"><span class="icon">&#128450;</span> Backing</div>
-        <div class="selector active"><span class="icon">&#9193;</span> Active Sprints</div>
-        <div class="selector"><span class="icon">&#128203;</span> Reports</div>
-        <div class="collapse"><span class="icon">&laquo;</span></div>
-    </section>
+
+    <div class="main-flex">
+        <section class="dashboard">
+            <header>
+                <img width="55px" src="/fm_be_web.png" alt="">
+                <%- user.team %>
+            </header>
+            <div class="selector-block">
+                <div class="selector">
+                    <img class="icon" src="/files_icon.png" alt=""> Backlog
+                </div>
+                <div class="selector active">
+                    <img class="icon" src="/forward_icon.png" alt=""> Active sprints
+                </div> 
+                <div class="selector">
+                    <img class="icon" src="/report_icon.png" alt=""> Reports
+                </div>
+            </div>
+            <div class="collapse"><span class="icon">&laquo;</span></div>
+        </section>
+        <div class="main-container">
+            <div class="panel-block">
+                <!-- Header row with panel titles -->
+                <div class="panel-row">
+                    <div class="panel-header">
+                        <% for(let i=0; i<7; i++){ %>
+                            <div class="panel-column">
+                                <div class="panel-title"><%- panelNames[i] %></div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+                
+                <!-- Each project gets its own row of 7 panels -->
+                <% for (let j=0; j<user.projects.length; j++){ %>
+                    <div class="panel-row">
+                        <div class="project-title-row"><%- user.projects[j] %></div>
+                    </div>
+                    <div class="panel-row">
+                        <% for (let i=0; i<7; i++){ %>
+                            <div class="panel-column">
+                                <div class="panel"></div>
+                            </div>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    </div>
+
     <script src="/app.js"></script>
 </body>
 

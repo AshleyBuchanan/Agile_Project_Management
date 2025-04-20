@@ -1,0 +1,32 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-weight: 400;
+}
+
+body {
+    margin: 8px 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-flex {
+    display: flex;
+    height: calc(100vh - 46px);
+}
+
+.main-container {
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+:root {
+    --panel-grey: hsl(207, 30%, 90%);
+    --panel-grey-selected: hsl(207, 40%, 75%);
+    --bubble-grey: hsl(207, 40%, 50%);
+    --font-grey: hsl(207, 20%, 60%)
+}

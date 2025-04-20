@@ -1,14 +1,3 @@
-* {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    margin: 8px 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
 nav {
     height: 30px;
     border-bottom: 1px solid black;
@@ -24,24 +13,28 @@ nav {
 }
 
 .bubble {
+    width: 60px;
+    text-align: center;
     font-size: small;
     border-radius: 2px;
-    padding: 1px 8px 3px 8px;
-    box-shadow: -.25px 1px 1px hsl(210, 100%, 36%);
-    background-color: hsl(210, 100%, 36%);
+    padding: 1px 8px 2px 8px;
+    margin-right: 5px;
+    box-shadow: -.25px 1px 1px var(--bubble-grey);
+    background-color: var(--bubble-grey);
     color: whitesmoke;
 }
 
 .spacer {
     background-color: black;
     display: inline-block;
-    width: 5%;
+    width: 15%;
 }
 
 .big-spacer {
     background-color: black;
     display: inline-block;
     width: 40%;
+    margin: auto;
 }
 
 input[type='search'] {
