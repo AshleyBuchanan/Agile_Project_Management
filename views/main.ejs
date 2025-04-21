@@ -29,14 +29,14 @@
         <img width="35px" src="/bullhorn.png" alt="">
         <img width="35px" src="/help.png" alt="">
         <img width="35px" src="/settings.png" alt="">
-        <div class="drop-down bubble"><%- user.name %></div>
+        <div class="drop-down bubble"><%- users[0].name %></div>
     </nav>
 
     <div class="main-flex">
         <section class="dashboard">
             <header>
                 <img width="55px" src="/fm_be_web.png" alt="">
-                <%- user.team %>
+                <%- users[0].team %>
             </header>
             <div class="selector-block">
                 <div class="selector">
@@ -68,29 +68,27 @@
                 <% } %>
             </div>
             <div class="top-level-3">
-                               <!-- Header row with panel titles -->
-                               <div class="panel-row">
-                                <div class="panel-header">
-                                    <% for(let i=0; i<7; i++){ %>
-                                        <div class="panel-column">
-                                            <div class="panel-title"><%- panelNames[i] %></div>
-                                        </div>
-                                    <% } %>
-                                </div>
+                <!-- Header row with panel titles -->
+                <div class="panel-row">
+                    <div class="panel-header">
+                        <% for(let i=0; i<7; i++){ %>
+                            <div class="panel-column">
+                                <div class="panel-title"><%- panelNames[i] %></div>
                             </div>
+                        <% } %>
+                    </div>
+                </div>
             </div>
-            <div class="panel-block">
- 
-                
+            <div class="panel-block">      
                 <!-- Each project gets its own row of 7 panels -->
-                <% for (let j=0; j<user.projects.length; j++){ %>
+                <% for (let j=0; j<users[0].projects.length; j++){ %>
                     <div class="panel-row">
-                        <div class="project-title-row"><%- user.projects[j] %></div>
+                        <div class="project-title-row"><%- users[0].projects[j] %></div>
                     </div>
                     <div class="panel-row">
                         <% for (let i=0; i<7; i++){ %>
                             <div class="panel-column">
-                                <div class="panel"></div>
+                                <div class="panel" data-project="<%- users[0].projects[j] %>" data-step="<%- panelNames[i] %>"></div>
                             </div>
                         <% } %>
                     </div>
@@ -98,8 +96,7 @@
             </div>
         </div>
     </div>
-    </div>
-
+ 
     <script src="/app.js"></script>
 </body>
 
