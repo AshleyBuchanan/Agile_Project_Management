@@ -4,27 +4,44 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
-const users = [{
-    name: 'Jasdeep',
-    team: 'FM BE and Web',
-    projects:
-        [
-            'FM Member Feedback - FY25 Q3',
-            'FM Month in Review - FY25 Q3',
-            'FM Some other Task - FY25 Q3',
-        ],
-    tickets:
-        [
-            'MINT-4748',
-            'MINT-4749',
-            'MINT-4742',
-            'MINT-4743',
-            'MINT-4723',
-            'MINT-4606',
-            'MINT-4605',
-            'MINT-4604',
-        ]
-}];
+const users = [
+    {
+        name: 'Jasdeep',
+        team: 'FM BE and Web',
+        projects:
+            [
+                'FM Member Feedback - FY25 Q3',
+                'FM Month in Review - FY25 Q3',
+                'FM Some other Task - FY25 Q3',
+            ],
+        tickets:
+            [
+                'MINT-4748',
+                'MINT-4749',
+                'MINT-4742',
+                'MINT-4743',
+                'MINT-4723',
+                'MINT-4606',
+                'MINT-4605',
+                'MINT-4604',
+            ]
+    },
+    {
+        name: 'Vinita',
+        team: 'FM BE and Web',
+        projects:
+            [
+                'FM Member Feedback - FY25 Q3',
+                'FM Month in Review - FY25 Q3',
+                'FM Some other Task - FY25 Q3',
+            ],
+        tickets:
+            [
+                'MADEUP-9999',
+                'MADEUP-9998',
+            ]
+    }
+];
 
 const tickets = [
     {
@@ -32,20 +49,25 @@ const tickets = [
         title: 'MINT-4748',
         description: 'Add unit test for month in review surface',
         priority: 'major',
+        hierarchy: 'story',
         step: 'START',
+        epic: true,
     },
     {
         project: 'FM Month in Review - FY25 Q3',
         title: 'MINT-4749',
         description: 'Tracking for Month In Review feature',
         priority: 'major',
+        hierarchy: 'story',
         step: 'START',
+        epic: true,
     },
     {
         project: 'FM Month in Review - FY25 Q3',
         title: 'MINT-4742',
         description: 'Create Fabric component for Unconnected User',
         priority: 'major',
+        hierarchy: 'bug',
         step: 'IN PROGRESS',
         epic: true,
     },
@@ -54,6 +76,7 @@ const tickets = [
         title: 'MINT-4743',
         description: 'Create and render templates for Unconnected User',
         priority: 'major',
+        hierarchy: 'bug',
         step: 'IN PROGRESS',
         epic: true,
     },
@@ -62,6 +85,7 @@ const tickets = [
         title: 'MINT-4723',
         description: 'Create darwin experiment for the feature',
         priority: 'major',
+        hierarchy: 'story',
         step: 'DONE',
         epic: true,
     },
@@ -70,6 +94,7 @@ const tickets = [
         title: 'MINT-4606',
         description: 'Fetch data needed for takeover content and eligibility',
         priority: 'major',
+        hierarchy: 'story',
         step: 'DONE',
         epic: false,
     },
@@ -78,6 +103,7 @@ const tickets = [
         title: 'MINT-4605',
         description: 'Build bottom takeover Fabric component',
         priority: 'major',
+        hierarchy: 'story',
         step: 'DONE',
         epic: false,
     },
@@ -86,6 +112,16 @@ const tickets = [
         title: 'MINT-4604',
         description: 'Implement additional events for tracking Member Feedback',
         priority: 'major',
+        hierarchy: 'story',
+        step: 'DONE',
+        epic: false,
+    },
+    {
+        project: 'FM Some other Task - FY25 Q3',
+        title: 'MADEUP-9999',
+        description: 'Fix login issue',
+        priority: 'blocker',
+        hierarchy: 'bug',
         step: 'DONE',
         epic: false,
     },

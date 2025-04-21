@@ -5,10 +5,12 @@
 }
 
 body {
-    margin: 8px 0;
+    margin: 0;
     width: 100vw;
     height: 100vh;
-    /* overflow: hidden; */
+    overflow: hidden;
+
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
 .main-flex {
@@ -25,8 +27,11 @@ body {
 }
 
 :root {
-    --panel-grey: hsl(207, 30%, 90%);
+    --panel-grey: rgba(222, 230, 237, .75);
     --panel-grey-selected: hsl(207, 40%, 75%);
     --bubble-grey: hsl(207, 40%, 50%);
-    --font-grey: hsl(207, 20%, 60%)
+    --font-grey: hsl(207, 20%, 60%);
+    --font-grey-dark: hsl(207, 20%, 50%);
+    --card-grey: hsl(207, 20%, 80%);
+    --card-grey-light: hsl(207, 20%, 98%);
 }
