@@ -106,12 +106,12 @@ function makeCardElement(c) {
 
     const hierarchy = document.createElement('img');
     hierarchy.className = 'card-icon';
-    hierarchy.src = `/${c.hierarchy}_icon.png`;
+    hierarchy.src = `/icons/${c.hierarchy}_icon.png`;
     tagsLine.append(hierarchy);
 
     const priority = document.createElement('img');
     priority.className = 'card-icon';
-    priority.src = `/${c.priority}_icon.png`;
+    priority.src = `/icons/${c.priority}_icon.png`;
     tagsLine.append(priority);
 
     const userText = document.createElement('div');
