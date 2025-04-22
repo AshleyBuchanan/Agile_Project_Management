@@ -40,6 +40,22 @@ const users = [
                 'MADEUP-9999',
                 'MADEUP-9998',
             ]
+    },
+    {
+        name: 'Praveen',
+        team: 'FM BE and Web',
+        projects:
+            [
+                'FM Member Feedback - FY25 Q3',
+                'FM Month in Review - FY25 Q3',
+                'FM Some other Task - FY25 Q3',
+                'FM Another Big Thing - FY25 Q3'
+            ],
+        tickets:
+            [
+                'MADEUP-9997',
+                'MADEUP-9996',
+            ]
     }
 ];
 
@@ -122,8 +138,35 @@ const tickets = [
         description: 'Fix login issue',
         priority: 'blocker',
         hierarchy: 'bug',
-        step: 'DONE',
+        step: 'BLOCKED',
         epic: false,
+    },
+    {
+        project: 'FM Some other Task - FY25 Q3',
+        title: 'MADEUP-9998',
+        description: 'Fix bad takeover issue',
+        priority: 'minor',
+        hierarchy: 'bug',
+        step: 'QE VALIDATED',
+        epic: false,
+    },
+    {
+        project: 'FM Some other Task - FY25 Q3',
+        title: 'MADEUP-9997',
+        description: 'First page font is incorrectly sized',
+        priority: 'minor',
+        hierarchy: 'bug',
+        step: 'TESTING',
+        epic: true,
+    },
+    {
+        project: 'FM Another Big Thing - FY25 Q3',
+        title: 'MADEUP-9996',
+        description: 'Background transparency isn\'t consistent across different pages',
+        priority: 'normal',
+        hierarchy: 'bug',
+        step: 'QE VALIDATED',
+        epic: true,
     },
 ];
 
@@ -134,16 +177,26 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATED', 'DONE'];
     const shortcuts = ['Jasdeep', 'Vinita', 'Praveen', 'Nivas', 'Josh Cantero', 'Ryan', 'Joshua Cheng', 'Sidd'];
-    res.render('main', { panelNames, shortcuts, users });
+    const allProjects = ['FM Month in Review - FY25 Q3', 'FM Member Feedback - FY25 Q3', 'FM Some other Task - FY25 Q3', 'FM Another Big Thing - FY25 Q3'];
+    res.render('main', { panelNames, shortcuts, allProjects, users });
 });
 app.post('/tickets', (req, res) => {
     const { names } = req.body;
-    const name = names[0];
-    const ticketTitles = users.find(user => user.name === name);
-
-    const matchedTickets = ticketTitles.tickets.map(title => tickets.find(t => t.title === title)).filter(Boolean);
+    const matchedTickets = [];
+    let projectTitles = new Set();
+    names.forEach(name => {
+        console.log('---', name);
+        const user = users.find(user => user.name === name);
+        if (user && Array.isArray(user.tickets)) {
+            user.tickets.forEach(title => {
+                const ticket = tickets.find(t => t.title === title);
+                ticket.user = name;
+                if (ticket) matchedTickets.push(ticket);
+            });
+        }
+    });
     console.log(matchedTickets);
-    res.json(matchedTickets);
+    res.json(matchedTickets, projectTitles);
 
 });
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

@@ -60,6 +60,18 @@
     cursor: pointer;
 }
 
+.bubble-long:hover {
+    box-shadow: inset 0 0 2px 2px var(--bubble-grey-dark);
+}
+
+.bubble-long:active {
+    translate: 0 1px;
+}
+
+.bubble-long-active {
+    background-color: var(--bubble-grey-dark);
+}
+
 .inactive {
     background-color: var(--panel-grey);
 }

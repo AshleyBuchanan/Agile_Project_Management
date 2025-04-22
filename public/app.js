@@ -1,6 +1,40 @@
+let myFilterSet = new Set();
+// myFilterSet.add(
+
+//     'Jasdeep',
+//     'Vinita',
+//     'Praveen',
+//     'Nivas',
+//     'Josh Cantero',
+//     'Ryan',
+//     'Sidd'
+
+
+// );
+
 const panels = document.querySelectorAll('.panel');
-let userData;
-const userNames = { names: ['Jasdeep', 'Vinita'] };
+const shortcuts = document.querySelector('.top-level-2');
+shortcuts.addEventListener('click', (event) => {
+    if (event.target.classList.contains('bubble-long')) {
+        event.target.classList.toggle('bubble-long-active');
+
+        if (event.target.classList.contains('bubble-long-active')) {
+            myFilterSet.add(event.target.innerText);
+        } else {
+            myFilterSet.delete(event.target.innerText);
+        }
+
+        eraseCards();
+        inquire();
+    }
+});
+
+function eraseCards() {
+    const cards = document.querySelectorAll('.card');
+    for (let card of cards) {
+        card.remove();
+    }
+}
 
 function makeCardElement(c) {
     const cardElement = document.createElement('div');
@@ -9,6 +43,7 @@ function makeCardElement(c) {
     const title = document.createElement('div');
     title.className = 'card-title';
     title.innerText = c.title;
+    if (c.step === 'DONE') title.style.textDecoration = 'line-through';
 
     const description = document.createElement('div');
     description.className = 'card-description';
@@ -33,7 +68,7 @@ function makeCardElement(c) {
 
     const userText = document.createElement('div');
     userText.className = 'card-user';
-    userText.innerText = 'Jasdeep';
+    userText.innerText = c.user;
     tagsLine.append(userText);
 
     cardElement.append(title);
@@ -54,24 +89,23 @@ function placeCards(cards) {
     });
 }
 
-function inquire(names) {
-    let userData;
+function inquire() {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/tickets', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function () {
         if (xhr.status === 200) {
-            userData = JSON.parse(xhr.responseText);
+            const userData = JSON.parse(xhr.responseText);
+            console.log(userData);
             placeCards(userData);
         } else {
             console.error('Something went wrong:', xhr.status);
         }
     };
 
-    xhr.send(JSON.stringify(names));
-
-    return userData;
+    let filters = [...myFilterSet];
+    xhr.send(JSON.stringify({ names: filters }));
 }
 
-inquire(userNames);
+inquire();

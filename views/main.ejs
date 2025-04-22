@@ -87,14 +87,14 @@
             </div>
             <div class="panel-block">      
                 <!-- Each project gets its own row of 7 panels -->
-                <% for (let j=0; j<users[0].projects.length; j++){ %>
+                <% for (let j=0; j<allProjects.length; j++){ %>
                     <div class="panel-row">
-                        <div class="project-title-row"><%- users[0].projects[j] %></div>
+                        <div class="project-title-row"><%- allProjects[j] %></div>
                     </div>
                     <div class="panel-row">
                         <% for (let i=0; i<7; i++){ %>
                             <div class="panel-column">
-                                <div class="panel" data-project="<%- users[0].projects[j] %>" data-step="<%- panelNames[i] %>"></div>
+                                <div class="panel" data-project="<%- allProjects[j] %>" data-step="<%- panelNames[i] %>"></div>
                             </div>
                         <% } %>
                     </div>
