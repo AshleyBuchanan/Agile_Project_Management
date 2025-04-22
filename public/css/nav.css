@@ -1,11 +1,54 @@
 nav {
     height: 30px;
     border-bottom: 1px solid black;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    /* align-items: center; */
     padding: 8px 20px 8px 20px;
     background-color: var(--panel-grey);
+    display: flex;
+    flex-direction: row;
+}
+
+.banner {
+    flex: 0 0 260px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    flex: 1 0 800px;
+}
+
+.nav-control {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 500px;
+    justify-content: space-between;
+}
+
+.nav-link {
+    text-align: center;
+    cursor: pointer;
+    padding: 4px 8px 0 8px;
+    flex: 0 0 80px;
+}
+
+.nav-button {
+    height: 25px;
+    margin: 2px 0 0 10px;
+    text-align: center;
+    font-size: small;
+    border-radius: 2px;
+    padding: 0 8px 0 8px;
+    box-shadow: -.25px 1px 1px var(--bubble-grey);
+    background-color: var(--bubble-grey);
+    color: whitesmoke;
+    align-content: center;
+    flex: 0 0 80px;
+}
+
+.nav-link:hover,
+.nav-button:hover {
+    background-color: var(--bubble-grey-light);
 }
 
 .drop-down {

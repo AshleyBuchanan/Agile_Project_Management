@@ -14,23 +14,7 @@
 </head>
 
 <body>
-    <nav>
-        <img width="35px" src="/icons/agileImage.png" alt="">
-        <div class="spacer"></div>
-        <div class="drop-down active">Tickets</div>
-        <div class="drop-down">Projects</div>
-        <div class="drop-down">Issues</div>
-        <div class="drop-down">Boards</div>
-        <div class="drop-down">Plans</div>
-        <div class="drop-down">Links</div>
-        <div class="drop-down bubble">Create</div>
-        <div class="big-spacer"></div>
-        <input type="search" placeholder="&#x1F50D; Search">
-        <img width="35px" src="/icons/bullhorn_icon.png" alt="">
-        <img width="35px" src="/icons/help_icon.png" alt="">
-        <img width="35px" src="/icons/settings_icon.png" alt="">
-        <div class="drop-down bubble"><%- users[0].name %></div>
-    </nav>
+    <%- include('partials/nav.ejs') %>
 
     <div class="main-flex">
         <section class="dashboard">
