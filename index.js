@@ -93,7 +93,7 @@ const tickets = [
         description: 'Create and render templates for Unconnected User',
         priority: 'major',
         hierarchy: 'bug',
-        step: 'IN PROGRESS',
+        step: 'TESTING',
         epic: true,
     },
     {
@@ -147,7 +147,7 @@ const tickets = [
         description: 'Fix bad takeover issue',
         priority: 'minor',
         hierarchy: 'bug',
-        step: 'QE VALIDATED',
+        step: 'QE VALIDATION',
         epic: false,
     },
     {
@@ -165,7 +165,7 @@ const tickets = [
         description: 'Background transparency isn\'t consistent across different pages',
         priority: 'normal',
         hierarchy: 'bug',
-        step: 'QE VALIDATED',
+        step: 'QE VALIDATION',
         epic: true,
     },
 ];
