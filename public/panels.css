@@ -60,12 +60,12 @@
     cursor: pointer;
 }
 
-.bubble-long:hover {
-    box-shadow: inset 0 0 2px 2px var(--bubble-grey-dark);
-}
-
 .bubble-long:active {
     translate: 0 1px;
+}
+
+.bubble-long-hover {
+    background-color: var(--bubble-grey-light);
 }
 
 .bubble-long-active {
@@ -122,6 +122,10 @@
     display: flexbox;
     flex-direction: column;
     align-items: center;
+}
+
+.panel-selectable {
+    box-shadow: 0 0 2px 4px var(--bubble-grey-dark);
 }
 
 .project-title-row {

@@ -11,6 +11,10 @@
     overflow: hidden;
 }
 
+.card:active {
+    translate: 0 1px;
+}
+
 .card-title {
     color: var(--font-grey);
     font-size: small;

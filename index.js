@@ -174,18 +174,17 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => {
-    const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATED', 'DONE'];
+app.get('/tickets', (req, res) => {
+    const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE'];
     const shortcuts = ['Jasdeep', 'Vinita', 'Praveen', 'Nivas', 'Josh Cantero', 'Ryan', 'Joshua Cheng', 'Sidd'];
     const allProjects = ['FM Month in Review - FY25 Q3', 'FM Member Feedback - FY25 Q3', 'FM Some other Task - FY25 Q3', 'FM Another Big Thing - FY25 Q3'];
-    res.render('main', { panelNames, shortcuts, allProjects, users });
+    res.render('tickets', { panelNames, shortcuts, allProjects, users });
 });
 app.post('/tickets', (req, res) => {
     const { names } = req.body;
     const matchedTickets = [];
     let projectTitles = new Set();
     names.forEach(name => {
-        console.log('---', name);
         const user = users.find(user => user.name === name);
         if (user && Array.isArray(user.tickets)) {
             user.tickets.forEach(title => {
@@ -195,7 +194,6 @@ app.post('/tickets', (req, res) => {
             });
         }
     });
-    console.log(matchedTickets);
     res.json(matchedTickets, projectTitles);
 
 });

@@ -29,12 +29,13 @@ body {
 :root {
     --panel-grey: rgba(222, 230, 237, .75);
     --panel-grey-selected: hsl(207, 40%, 75%);
-    --bubble-grey-light: hsl(207, 40%, 70%);
+    --bubble-grey-light: hsl(207, 40%, 75%);
     --bubble-grey: hsl(207, 40%, 50%);
     --bubble-grey-dark: hsl(207, 40%, 30%);
     --font-grey: hsl(207, 20%, 60%);
     --font-grey-dark: hsl(207, 20%, 50%);
     --card-grey: hsl(207, 20%, 80%);
+    --card-grey-hover: hsl(207, 20%, 90%);
     --card-grey-light: hsl(207, 20%, 98%);
     --blue-skies: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }

@@ -17,7 +17,7 @@ nav {
 
 .drop-down:hover,
 .drop-down.active {
-    background-color: var(--panel-grey-selected);
+    background-color: var(--bubble-grey-light);
 }
 
 .bubble {

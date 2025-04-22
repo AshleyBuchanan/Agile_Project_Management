@@ -17,7 +17,7 @@
     <nav>
         <img width="35px" src="/agileImage.png" alt="">
         <div class="spacer"></div>
-        <div class="drop-down active">Dashboards</div>
+        <div class="drop-down active">Tickets</div>
         <div class="drop-down">Projects</div>
         <div class="drop-down">Issues</div>
         <div class="drop-down">Boards</div>
@@ -94,7 +94,27 @@
                     <div class="panel-row">
                         <% for (let i=0; i<7; i++){ %>
                             <div class="panel-column">
-                                <div class="panel" data-project="<%- allProjects[j] %>" data-step="<%- panelNames[i] %>"></div>
+                                <% if (panelNames[i] === 'START') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="START" data-allowedfrom="['']"></div>
+                                <% } %>
+                                <% if (panelNames[i] === 'BLOCKED') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="BLOCKED" data-allowedfrom="['IN PROGRESS','CODE REVIEW','TESTING','QE VALIDATION']"></div>
+                                <% } %>
+                                <% if (panelNames[i] === 'IN PROGRESS') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="IN PROGRESS" data-allowedfrom="['START','BLOCKED', 'CODE REVIEW', 'TESTING','QE VALIDATION']"></div>
+                                <% } %>
+                                <% if (panelNames[i] === 'CODE REVIEW') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="CODE REVIEW" data-allowedfrom="['IN PROGRESS','TESTING','QE VALIDATION']"></div>
+                                <% } %>
+                                <% if (panelNames[i] === 'TESTING') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="TESTING" data-allowedfrom="['IN PROGRESS','CODE REVIEW','QE VALIDATION']"></div>
+                                <% } %>
+                                <% if (panelNames[i] === 'QE VALIDATION') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="QE VALIDATION" data-allowedfrom="['CODE REVIEW','TESTING']"></div>
+                                <% } %>
+                                <% if (panelNames[i] === 'DONE') { %>
+                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="DONE" data-allowedfrom="['QE VALIDATION']"></div>
+                                <% } %>
                             </div>
                         <% } %>
                     </div>
