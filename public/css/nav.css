@@ -10,6 +10,7 @@ nav {
 
 .banner {
     flex: 0 0 260px;
+    translate: 0 -5px;
 }
 
 .nav-links {
