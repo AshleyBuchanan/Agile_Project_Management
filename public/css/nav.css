@@ -1,7 +1,6 @@
 nav {
     height: 30px;
     border-bottom: 1px solid black;
-    /* align-items: center; */
     padding: 8px 20px 8px 20px;
     background-color: var(--panel-grey);
     display: flex;
@@ -21,13 +20,13 @@ a {
 .nav-links {
     display: flex;
     flex-direction: row;
-    flex: 1 0 800px;
+    flex: 1 1 800px;
 }
 
 .nav-control {
     display: flex;
     flex-direction: row;
-    flex: 0 0 500px;
+    flex: 0 1 500px;
     justify-content: space-between;
 }
 
@@ -35,7 +34,7 @@ a {
     text-align: center;
     cursor: pointer;
     padding: 4px 8px 0 8px;
-    flex: 0 0 80px;
+    flex: 0 1 80px;
 }
 
 .nav-button {

@@ -1,18 +1,18 @@
 let myFilterSet = new Set();
-myFilterSet.add('Jasdeep');
-myFilterSet.add('Vinita');
-myFilterSet.add('Praveen');
-myFilterSet.add('Nivas');
-myFilterSet.add('Josh Cantero');
-myFilterSet.add('Ryan');
-myFilterSet.add('Sidd');
+myFilterSet.add('Ashley');
+
 
 const navLinks = document.querySelectorAll('.nav-link');
 for (let navLink of navLinks) {
     navLink.addEventListener('click', e => {
         const links = document.querySelectorAll('.nav-link');
-        for (let link of links) link.classList.remove('active');
-        e.target.parentElement.classList.add('active');
+        for (let link of links) {
+            if (link.innerText === e.target.innerText) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        }
     });
 }
 const panels = document.querySelectorAll('.panel');
@@ -33,7 +33,7 @@ for (let panel of panels) {
             allowedFrom = (new Function(`return ${allowedFromRaw}`))();
         }
 
-        const project = card.querySelector('.card-project').innerText;
+        const project = card.querySelector('.card-sprint-id').innerText;
         if (card && allowedFrom.includes(card.dataset.step)) {
             if (panel.dataset.project === project) {
                 panel.append(card);
@@ -105,17 +105,33 @@ function makeCardElement(c) {
     description.className = 'card-description';
     description.innerText = c.description;
 
-    const project = document.createElement('div');
-    project.className = 'card-project major';
-    project.innerText = c.project;
+    const sprint_id = document.createElement('div');
+    sprint_id.className = 'card-sprint-id major';
+    sprint_id.innerText = c.sprint_id;
 
     const tagsLine = document.createElement('div');
     tagsLine.className = 'card-tagsLine';
 
-    const hierarchy = document.createElement('img');
-    hierarchy.className = 'card-icon';
-    hierarchy.src = `/icons/${c.hierarchy}_icon.png`;
-    tagsLine.append(hierarchy);
+    const blocker = document.createElement('img');
+    if (c.blocker) {
+        blocker.className = 'card-icon';
+        blocker.src = `/icons/blocker_icon.png`;
+        tagsLine.append(blocker);
+    }
+
+    const epic = document.createElement('img');
+    if (c.epic) {
+        epic.className = 'card-icon';
+        epic.src = `/icons/epic_icon.png`;
+        tagsLine.append(epic);
+    }
+
+    const story_id = document.createElement('img');
+    if (c.story_id) {
+        story_id.className = 'card-icon';
+        story_id.src = `/icons/story_icon.png`;
+        tagsLine.append(story_id);
+    }
 
     const priority = document.createElement('img');
     priority.className = 'card-icon';
@@ -129,7 +145,7 @@ function makeCardElement(c) {
 
     cardElement.append(title);
     cardElement.append(description);
-    cardElement.append(project);
+    cardElement.append(sprint_id);
     cardElement.append(tagsLine);
     return cardElement;
 }
@@ -137,7 +153,7 @@ function makeCardElement(c) {
 function placeCards(cards) {
     cards.forEach(card => {
         for (let panel of panels) {
-            if (card.project === panel.dataset.project && card.step === panel.dataset.step) {
+            if (card.sprint_id === panel.dataset.project && card.step === panel.dataset.step) {
                 const cardElement = makeCardElement(card);
                 cardElement.dataset.step = panel.dataset.step;
                 cardElement.setAttribute('draggable', 'true');
@@ -145,7 +161,8 @@ function placeCards(cards) {
                     e.dataTransfer.setData('text/plain', card.title);
                     e.dataTransfer.effectAllowed = 'move';
 
-                    const project = cardElement.querySelector('.card-project').innerText;
+                    const sprint_id = cardElement.querySelector('.card-sprint-id').innerText;
+                    console.log(sprint_id);
                     for (let panel of panels) {
                         const p_project = panel.dataset.project;
                         const c_step = cardElement.dataset.step;
@@ -156,7 +173,7 @@ function placeCards(cards) {
                             allowedFrom = (new Function(`return ${allowedFromRaw}`))();
                         }
 
-                        if (allowedFrom.includes(c_step) && p_project === project) {
+                        if (allowedFrom.includes(c_step) && p_project === sprint_id) {
                             panel.classList.add('panel-selectable');
                         }
                     }
@@ -170,13 +187,13 @@ function placeCards(cards) {
 
 function inquire() {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/tickets', true);
+    xhr.open('POST', '/sprints', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function () {
         if (xhr.status === 200) {
             const userData = JSON.parse(xhr.responseText);
-            //console.log(userData);
+            console.log(userData);
             placeCards(userData);
         } else {
             console.error('Something went wrong:', xhr.status);

@@ -1,0 +1,48 @@
+{
+    "id": "TASK-0001",
+    "title": "Implement Google sign-in",
+    "description": "Use OAuth 2.0 to allow users to log in with their Google account.",
+    "step": "IN PROGRESS",
+    "priority": "major",
+    "assignee": {
+        "name": "Ashley",
+        "id": "user-007"
+    },
+    "created_at": "2025-04-20T10:15:00Z",
+    "updated_at": "2025-04-23T15:45:00Z",
+    "due_date": "2025-04-25",
+    "estimated_hours": 6,
+    "time_spent_hours": 2.5,
+    "labels": [
+        "auth",
+        "frontend",
+        "oauth"
+    ],
+    "epic": "User Onboarding",
+    "sprint_id": "SPRINT-ABC",
+    "story_id": "STORY-204",
+    "subtasks": [
+        {
+            "id": "SUB-1",
+            "title": "Set up OAuth credentials in Google Developer Console",
+            "status": "Done"
+        },
+        {
+            "id": "SUB-2",
+            "title": "Connect front-end to OAuth service",
+            "status": "In Progress"
+        }
+    ],
+    "comments": [
+        {
+            "user": "Ashley",
+            "timestamp": "2025-04-23T11:32:00Z",
+            "message": "Getting auth token but redirect is failing — checking config."
+        }
+    ],
+    "dependencies": [],
+    "attachments": [],
+    "acceptance_criteria": [],
+    "blocked_by": [],
+    "blocker": "True"
+}

@@ -71,33 +71,33 @@
             </div>
             <div class="panel-block">      
                 <!-- Each project gets its own row of 7 panels -->
-                <% for (let j=0; j<allProjects.length; j++){ %>
+                <% for (let j=0; j<allSprints.length; j++){ %>
                     <div class="panel-row">
-                        <div class="project-title-row"><%- allProjects[j] %></div>
+                        <div class="project-title-row"><%- allSprints[j] %></div>
                     </div>
                     <div class="panel-row">
                         <% for (let i=0; i<7; i++){ %>
                             <div class="panel-column">
                                 <% if (panelNames[i] === 'START') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="START" data-allowedfrom="['']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="START" data-allowedfrom="['']"></div>
                                 <% } %>
                                 <% if (panelNames[i] === 'BLOCKED') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="BLOCKED" data-allowedfrom="['IN PROGRESS','CODE REVIEW','TESTING','QE VALIDATION']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="BLOCKED" data-allowedfrom="['IN PROGRESS','CODE REVIEW','TESTING','QE VALIDATION']"></div>
                                 <% } %>
                                 <% if (panelNames[i] === 'IN PROGRESS') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="IN PROGRESS" data-allowedfrom="['START','BLOCKED', 'CODE REVIEW', 'TESTING','QE VALIDATION']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="IN PROGRESS" data-allowedfrom="['START','BLOCKED', 'CODE REVIEW', 'TESTING','QE VALIDATION']"></div>
                                 <% } %>
                                 <% if (panelNames[i] === 'CODE REVIEW') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="CODE REVIEW" data-allowedfrom="['IN PROGRESS','TESTING','QE VALIDATION']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="CODE REVIEW" data-allowedfrom="['IN PROGRESS','TESTING','QE VALIDATION']"></div>
                                 <% } %>
                                 <% if (panelNames[i] === 'TESTING') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="TESTING" data-allowedfrom="['IN PROGRESS','CODE REVIEW','QE VALIDATION']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="TESTING" data-allowedfrom="['IN PROGRESS','CODE REVIEW','QE VALIDATION']"></div>
                                 <% } %>
                                 <% if (panelNames[i] === 'QE VALIDATION') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="QE VALIDATION" data-allowedfrom="['CODE REVIEW','TESTING']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="QE VALIDATION" data-allowedfrom="['CODE REVIEW','TESTING']"></div>
                                 <% } %>
                                 <% if (panelNames[i] === 'DONE') { %>
-                                    <div class="panel" data-project="<%- allProjects[j] %>" data-step="DONE" data-allowedfrom="['QE VALIDATION']"></div>
+                                    <div class="panel" data-project="<%- allSprints[j] %>" data-step="DONE" data-allowedfrom="['QE VALIDATION']"></div>
                                 <% } %>
                             </div>
                         <% } %>
@@ -107,7 +107,7 @@
         </div>
     </div>
  
-    <script src="/js/tickets.js"></script>
+    <script src="/js/sprints.js"></script>
 </body>
 
 </html>
