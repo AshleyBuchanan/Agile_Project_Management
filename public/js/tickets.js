@@ -7,6 +7,14 @@ myFilterSet.add('Josh Cantero');
 myFilterSet.add('Ryan');
 myFilterSet.add('Sidd');
 
+const navLinks = document.querySelectorAll('.nav-link');
+for (let navLink of navLinks) {
+    navLink.addEventListener('click', e => {
+        const links = document.querySelectorAll('.nav-link');
+        for (let link of links) link.classList.remove('active');
+        e.target.parentElement.classList.add('active');
+    });
+}
 const panels = document.querySelectorAll('.panel');
 for (let panel of panels) {
     panel.addEventListener('dragover', e => {

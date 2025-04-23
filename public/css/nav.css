@@ -8,8 +8,13 @@ nav {
     flex-direction: row;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
 .banner {
-    flex: 0 0 260px;
+    flex: 0 0 280px;
     translate: 0 -5px;
 }
 
@@ -52,42 +57,8 @@ nav {
     background-color: var(--bubble-grey-light);
 }
 
-.drop-down {
-    text-align: center;
-    display: inline-block;
-    cursor: pointer;
-    padding: 13px 8px;
-}
-
-.drop-down:hover,
-.drop-down.active {
+.nav-link.active {
     background-color: var(--bubble-grey-light);
-}
-
-.bubble {
-    width: 60px;
-    text-align: center;
-    font-size: small;
-    border-radius: 2px;
-    padding: 1px 8px 2px 8px;
-    margin-right: 5px;
-    box-shadow: -.25px 1px 1px var(--bubble-grey);
-    background-color: var(--bubble-grey);
-    color: whitesmoke;
-}
-
-.spacer {
-    background-color: black;
-    display: inline-block;
-    min-width: 226px;
-    max-width: 226px;
-}
-
-.big-spacer {
-    background-color: black;
-    display: inline-block;
-    width: 40%;
-    margin: auto;
 }
 
 input[type='search'] {
