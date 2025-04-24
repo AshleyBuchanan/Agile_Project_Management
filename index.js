@@ -1,182 +1,194 @@
-const { match } = require('assert');
 const express = require('express');
 const app = express();
 const path = require('path');
 const port = 3000;
-const task1 = require('./task1.json');
-const task2 = require('./task2.json');
-const task3 = require('./task3.json');
-const task4 = require('./task4.json');
-const task5 = require('./task5.json');
+const connectToMongo = require('./db/mongo'); // adjust the path if needed
 
-const users = [
-    {
-        name: 'Ashley',
-        team: 'FM BE and Web',
-        epics:
-            [
-                'User Onboarding',
-                'Dashboard Management'
-            ],
-        tasks:
-            [
-                'Implement Google sign-in',
-                'Add archive feature for completed tasks'
-            ]
-    },
-    {
-        name: 'Jasdeep',
-        team: 'FM BE and Web',
-        epics:
-            [
-                'FM Month in Review - FY25 Q3'
-            ],
-        tasks:
-            [
-                'Add connection for unconnected user',
-            ]
-    },
-    {
-        name: 'Vinita',
-        team: 'FM BE and Web',
-        epics:
-            [
-                'User Account Management'
-            ],
-        tasks:
-            [
-                'Create password reset flow',
-            ]
-    },
-    {
-        name: 'Praveen',
-        team: 'FM BE and Web',
-        epics:
-            [
-                'UI Polish'
-            ],
-        tasks:
-            [
-                'Ensure mobile responsiveness',
-            ]
+async function getData() {
+    const { tasksCollection, usersCollection } = await connectToMongo();
+    const tasks = await tasksCollection.find().toArray();
+    const users = await usersCollection.find().toArray();
+    return { tasks, users };
+}
+let tasks = [];
+let users = [];
+
+(async () => {
+    try {
+        ({ tasks, users } = await getData());
+    } catch (err) {
+        console.error('Failed to load tasks.');
     }
-];
+})();
 
-const tasks = [
-    {
-        sprint_id: 'FM Month in Review - FY25 Q3',
-        title: 'MINT-4748',
-        description: 'Add unit test for month in review surface',
-        priority: 'major',
-        hierarchy: 'story',
-        step: 'START',
-        epic: true,
-    },
-    {
-        sprint_id: 'FM Month in Review - FY25 Q3',
-        title: 'MINT-4749',
-        description: 'Tracking for Month In Review feature',
-        priority: 'major',
-        hierarchy: 'story',
-        step: 'START',
-        epic: true,
-    },
-    {
-        sprint_id: 'FM Month in Review - FY25 Q3',
-        title: 'MINT-4742',
-        description: 'Create Fabric component for Unconnected User',
-        priority: 'major',
-        hierarchy: 'bug',
-        step: 'IN PROGRESS',
-        epic: true,
-    },
-    {
-        sprint_id: 'FM Month in Review - FY25 Q3',
-        title: 'MINT-4743',
-        description: 'Create and render templates for Unconnected User',
-        priority: 'major',
-        hierarchy: 'bug',
-        step: 'TESTING',
-        epic: true,
-    },
-    {
-        sprint_id: 'FM Month in Review - FY25 Q3',
-        title: 'MINT-4723',
-        description: 'Create darwin experiment for the feature',
-        priority: 'major',
-        hierarchy: 'story',
-        step: 'DONE',
-        epic: true,
-    },
-    {
-        sprint_id: 'FM Member Feedback - FY25 Q3',
-        title: 'MINT-4606',
-        description: 'Fetch data needed for takeover content and eligibility',
-        priority: 'major',
-        hierarchy: 'story',
-        step: 'DONE',
-        epic: false,
-    },
-    {
-        sprint_id: 'FM Member Feedback - FY25 Q3',
-        title: 'MINT-4605',
-        description: 'Build bottom takeover Fabric component',
-        priority: 'major',
-        hierarchy: 'story',
-        step: 'DONE',
-        epic: false,
-    },
-    {
-        sprint_id: 'FM Member Feedback - FY25 Q3',
-        title: 'MINT-4604',
-        description: 'Implement additional events for tracking Member Feedback',
-        priority: 'major',
-        hierarchy: 'story',
-        step: 'DONE',
-        epic: false,
-    },
-    {
-        sprint_id: 'FM Some other Task - FY25 Q3',
-        title: 'MADEUP-9999',
-        description: 'Fix login issue',
-        priority: 'blocker',
-        hierarchy: 'bug',
-        step: 'BLOCKED',
-        epic: false,
-    },
-    {
-        sprint_id: 'FM Some other Task - FY25 Q3',
-        title: 'MADEUP-9998',
-        description: 'Fix bad takeover issue',
-        priority: 'minor',
-        hierarchy: 'bug',
-        step: 'QE VALIDATION',
-        epic: false,
-    },
-    {
-        sprint_id: 'FM Some other Task - FY25 Q3',
-        title: 'MADEUP-9997',
-        description: 'First page font is incorrectly sized',
-        priority: 'minor',
-        hierarchy: 'bug',
-        step: 'TESTING',
-        epic: true,
-    },
-    {
-        sprint_id: 'FM Another Big Thing - FY25 Q3',
-        title: 'MADEUP-9996',
-        description: 'Background transparency isn\'t consistent across different pages',
-        priority: 'normal',
-        hierarchy: 'bug',
-        step: 'QE VALIDATION',
-        epic: true,
-    },
-    task1,
-    task2,
-    task3,
-    task4,
-    task5,
-];
+// const users = [
+//     {
+//         name: 'Ashley',
+//         team: 'FM BE and Web',
+//         epics:
+//             [
+//                 'User Onboarding',
+//                 'Dashboard Management'
+//             ],
+//         tasks:
+//             [
+//                 'Implement Google sign-in',
+//                 'Add archive feature for completed tasks'
+//             ]
+//     },
+//     {
+//         name: 'Jasdeep',
+//         team: 'FM BE and Web',
+//         epics:
+//             [
+//                 'FM Month in Review - FY25 Q3'
+//             ],
+//         tasks:
+//             [
+//                 'Add connection for unconnected user',
+//             ]
+//     },
+//     {
+//         name: 'Vinita',
+//         team: 'FM BE and Web',
+//         epics:
+//             [
+//                 'User Account Management'
+//             ],
+//         tasks:
+//             [
+//                 'Create password reset flow',
+//             ]
+//     },
+//     {
+//         name: 'Praveen',
+//         team: 'FM BE and Web',
+//         epics:
+//             [
+//                 'UI Polish'
+//             ],
+//         tasks:
+//             [
+//                 'Ensure mobile responsiveness',
+//             ]
+//     }
+// ];
+
+// const tasks = [
+//     {
+//         sprint_id: 'FM Month in Review - FY25 Q3',
+//         title: 'MINT-4748',
+//         description: 'Add unit test for month in review surface',
+//         priority: 'major',
+//         hierarchy: 'story',
+//         step: 'START',
+//         epic: true,
+//     },
+//     {
+//         sprint_id: 'FM Month in Review - FY25 Q3',
+//         title: 'MINT-4749',
+//         description: 'Tracking for Month In Review feature',
+//         priority: 'major',
+//         hierarchy: 'story',
+//         step: 'START',
+//         epic: true,
+//     },
+//     {
+//         sprint_id: 'FM Month in Review - FY25 Q3',
+//         title: 'MINT-4742',
+//         description: 'Create Fabric component for Unconnected User',
+//         priority: 'major',
+//         hierarchy: 'bug',
+//         step: 'IN PROGRESS',
+//         epic: true,
+//     },
+//     {
+//         sprint_id: 'FM Month in Review - FY25 Q3',
+//         title: 'MINT-4743',
+//         description: 'Create and render templates for Unconnected User',
+//         priority: 'major',
+//         hierarchy: 'bug',
+//         step: 'TESTING',
+//         epic: true,
+//     },
+//     {
+//         sprint_id: 'FM Month in Review - FY25 Q3',
+//         title: 'MINT-4723',
+//         description: 'Create darwin experiment for the feature',
+//         priority: 'major',
+//         hierarchy: 'story',
+//         step: 'DONE',
+//         epic: true,
+//     },
+//     {
+//         sprint_id: 'FM Member Feedback - FY25 Q3',
+//         title: 'MINT-4606',
+//         description: 'Fetch data needed for takeover content and eligibility',
+//         priority: 'major',
+//         hierarchy: 'story',
+//         step: 'DONE',
+//         epic: false,
+//     },
+//     {
+//         sprint_id: 'FM Member Feedback - FY25 Q3',
+//         title: 'MINT-4605',
+//         description: 'Build bottom takeover Fabric component',
+//         priority: 'major',
+//         hierarchy: 'story',
+//         step: 'DONE',
+//         epic: false,
+//     },
+//     {
+//         sprint_id: 'FM Member Feedback - FY25 Q3',
+//         title: 'MINT-4604',
+//         description: 'Implement additional events for tracking Member Feedback',
+//         priority: 'major',
+//         hierarchy: 'story',
+//         step: 'DONE',
+//         epic: false,
+//     },
+//     {
+//         sprint_id: 'FM Some other Task - FY25 Q3',
+//         title: 'MADEUP-9999',
+//         description: 'Fix login issue',
+//         priority: 'blocker',
+//         hierarchy: 'bug',
+//         step: 'BLOCKED',
+//         epic: false,
+//     },
+//     {
+//         sprint_id: 'FM Some other Task - FY25 Q3',
+//         title: 'MADEUP-9998',
+//         description: 'Fix bad takeover issue',
+//         priority: 'minor',
+//         hierarchy: 'bug',
+//         step: 'QE VALIDATION',
+//         epic: false,
+//     },
+//     {
+//         sprint_id: 'FM Some other Task - FY25 Q3',
+//         title: 'MADEUP-9997',
+//         description: 'First page font is incorrectly sized',
+//         priority: 'minor',
+//         hierarchy: 'bug',
+//         step: 'TESTING',
+//         epic: true,
+//     },
+//     {
+//         sprint_id: 'FM Another Big Thing - FY25 Q3',
+//         title: 'MADEUP-9996',
+//         description: 'Background transparency isn\'t consistent across different pages',
+//         priority: 'normal',
+//         hierarchy: 'bug',
+//         step: 'QE VALIDATION',
+//         epic: true,
+//     },
+//     task1,
+//     task2,
+//     task3,
+//     task4,
+//     task5,
+// ];
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -189,23 +201,25 @@ app.get('/sprints', (req, res) => {
     const activeSprint = 'FY25 Q3';
     res.render('sprints', { panelNames, shortcuts, allEpics, users, activeSprint });
 });
-app.post('/sprints', (req, res) => {
+app.post('/sprints', async (req, res) => {
     const { names } = req.body;
     const matchedTasks = [];
     names.forEach(name => {
-        console.log(name);
         const user = users.find(user => user.name === name);
         if (user && Array.isArray(user.tasks)) {
             user.tasks.forEach(title => {
                 const task = tasks.find(t => t.title === title);
-                task.user = name;
-                if (task) matchedTasks.push(task);
+                if (task) {
+                    task.user = name;
+                    matchedTasks.push(task);
+                }
             });
         }
     });
-    res.json(matchedTasks);
-
+    res.json(matchedTasks); // ✅ Only send response once after loop
 });
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+
+app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
 
 

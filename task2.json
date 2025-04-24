@@ -1,49 +1,10 @@
 {
-    "id": "TASK-0002",
-    "title": "Add connection for unconnected user",
-    "description": "Create Fabric component for Unconnected User",
-    "step": "IN PROGRESS",
-    "priority": "minor",
-    "assignee": {
-        "name": "Jasdeep",
-        "id": "user-042"
-    },
-    "created_at": "2025-04-20T10:15:00Z",
-    "updated_at": "2025-04-23T15:45:00Z",
-    "due_date": "2025-04-25",
-    "estimated_hours": 6,
-    "time_spent_hours": 2.5,
-    "labels": [
-        "auth",
-        "frontend",
-        "oauth"
+    "name": "Jasdeep",
+    "team": "FM BE and Web",
+    "epics": [
+        "FM Month in Review - FY25 Q3"
     ],
-    "epic": "FM Month in Review",
-    "sprint_id": "FM Month in Review - FY25 Q3",
-    "story_id": "STORY-205",
-    "subtasks": [
-        {
-            "id": "SUB-1",
-            "title": "Create Fabric component for Unconnected User",
-            "status": "Done"
-        },
-        {
-            "id": "SUB-2",
-            "title": "Connect front-end to OAuth service",
-            "status": "In Progress"
-        }
-    ],
-    "comments": [
-        {
-            "user": "Ashley",
-            "timestamp": "2025-04-23T11:32:00Z",
-            "message": "Getting auth token but redirect is failing — checking config."
-        }
-    ],
-    "dependencies": [],
-    "attachments": [],
-    "acceptance_criteria": [],
-    "blocked_by": [],
-    "blocker": "False",
-    "has_bug": "True"
+    "tasks": [
+        "Add connection for unconnected user"
+    ]
 }
