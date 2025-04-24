@@ -37,9 +37,9 @@ for (let panel of panels) {
             allowedFrom = (new Function(`return ${allowedFromRaw}`))();
         }
 
-        const project = card.querySelector('.card-sprint-id').innerText;
+        const epic = card.querySelector('.card-epic').innerText;
         if (card && allowedFrom.includes(card.dataset.step)) {
-            if (panel.dataset.project === project) {
+            if (panel.dataset.epic === epic) {
                 panel.append(card);
                 card.dataset.step = panel.dataset.step;
 
@@ -110,7 +110,7 @@ function makeCardElement(c) {
     description.innerText = c.description;
 
     const epic = document.createElement('div');
-    epic.className = 'card-sprint-id major';
+    epic.className = 'card-epic major';
     epic.innerText = c.epic;
 
     const tagsLine = document.createElement('div');
@@ -157,7 +157,7 @@ function makeCardElement(c) {
 function placeCards(cards) {
     cards.forEach(card => {
         for (let panel of panels) {
-            if (card.epic === panel.dataset.project && card.step === panel.dataset.step) {
+            if (card.epic === panel.dataset.epic && card.step === panel.dataset.step) {
                 const cardElement = makeCardElement(card);
                 cardElement.dataset.step = panel.dataset.step;
                 cardElement.setAttribute('draggable', 'true');
@@ -165,10 +165,10 @@ function placeCards(cards) {
                     e.dataTransfer.setData('text/plain', card.id);
                     e.dataTransfer.effectAllowed = 'move';
 
-                    const epic = cardElement.querySelector('.card-sprint-id').innerText;
+                    const epic = cardElement.querySelector('.card-epic').innerText;
                     console.log(epic);
                     for (let panel of panels) {
-                        const p_project = panel.dataset.project;
+                        const p_epic = panel.dataset.epic;
                         const c_step = cardElement.dataset.step;
 
                         const allowedFromRaw = panel.dataset.allowedfrom;
@@ -177,7 +177,7 @@ function placeCards(cards) {
                             allowedFrom = (new Function(`return ${allowedFromRaw}`))();
                         }
 
-                        if (allowedFrom.includes(c_step) && p_project === epic) {
+                        if (allowedFrom.includes(c_step) && p_epic === epic) {
                             panel.classList.add('panel-selectable');
                         }
                     }
