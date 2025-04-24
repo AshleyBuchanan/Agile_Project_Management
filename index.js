@@ -13,12 +13,12 @@ const users = [
     {
         name: 'Ashley',
         team: 'FM BE and Web',
-        projects:
+        epics:
             [
                 'User Onboarding',
                 'Dashboard Management'
             ],
-        tickets:
+        tasks:
             [
                 'Implement Google sign-in',
                 'Add archive feature for completed tasks'
@@ -27,11 +27,11 @@ const users = [
     {
         name: 'Jasdeep',
         team: 'FM BE and Web',
-        projects:
+        epics:
             [
                 'FM Month in Review - FY25 Q3'
             ],
-        tickets:
+        tasks:
             [
                 'Add connection for unconnected user',
             ]
@@ -39,11 +39,11 @@ const users = [
     {
         name: 'Vinita',
         team: 'FM BE and Web',
-        projects:
+        epics:
             [
                 'User Account Management'
             ],
-        tickets:
+        tasks:
             [
                 'Create password reset flow',
             ]
@@ -51,18 +51,18 @@ const users = [
     {
         name: 'Praveen',
         team: 'FM BE and Web',
-        projects:
+        epics:
             [
                 'UI Polish'
             ],
-        tickets:
+        tasks:
             [
                 'Ensure mobile responsiveness',
             ]
     }
 ];
 
-const tickets = [
+const tasks = [
     {
         sprint_id: 'FM Month in Review - FY25 Q3',
         title: 'MINT-4748',
@@ -191,19 +191,19 @@ app.get('/sprints', (req, res) => {
 });
 app.post('/sprints', (req, res) => {
     const { names } = req.body;
-    const matchedTickets = [];
+    const matchedTasks = [];
     names.forEach(name => {
         console.log(name);
         const user = users.find(user => user.name === name);
-        if (user && Array.isArray(user.tickets)) {
-            user.tickets.forEach(title => {
-                const ticket = tickets.find(t => t.title === title);
-                ticket.user = name;
-                if (ticket) matchedTickets.push(ticket);
+        if (user && Array.isArray(user.tasks)) {
+            user.tasks.forEach(title => {
+                const task = tasks.find(t => t.title === title);
+                task.user = name;
+                if (task) matchedTasks.push(task);
             });
         }
     });
-    res.json(matchedTickets);
+    res.json(matchedTasks);
 
 });
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
