@@ -3,7 +3,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const port = 3000;
-const task = require('./tasks.json');
+const task1 = require('./task1.json');
+const task2 = require('./task2.json');
 const users = [
     {
         name: 'Ashley',
@@ -15,6 +16,18 @@ const users = [
         tickets:
             [
                 'Implement Google sign-in',
+            ]
+    },
+    {
+        name: 'Jasdeep',
+        team: 'FM BE and Web',
+        projects:
+            [
+                'FM Month in Review - FY25 Q3'
+            ],
+        tickets:
+            [
+                'Add connection for unconnected user',
             ]
     }
 ];
@@ -128,7 +141,8 @@ const tickets = [
         step: 'QE VALIDATION',
         epic: true,
     },
-    task,
+    task1,
+    task2,
 ];
 
 app.use(express.json());
@@ -139,17 +153,19 @@ app.get('/sprints', (req, res) => {
     const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE'];
     const shortcuts = ['Jasdeep', 'Vinita', 'Praveen', 'Nivas', 'Josh Cantero', 'Ryan', 'Joshua Cheng', 'Ashley'];
     const allSprints = ['SPRINT-ABC', 'FM Month in Review - FY25 Q3', 'FM Member Feedback - FY25 Q3', 'FM Some other Task - FY25 Q3', 'FM Another Big Thing - FY25 Q3'];
-    res.render('sprints', { panelNames, shortcuts, allSprints, users });
+    const allEpics = ['User Onboarding', 'FM Month in Review', 'FM Member Feedback', 'FM Some other Task', 'FM Another Big Thing'];
+    const activeSprint = 'FY25 Q3';
+    res.render('sprints', { panelNames, shortcuts, allEpics, users, activeSprint });
 });
 app.post('/sprints', (req, res) => {
     const { names } = req.body;
     const matchedTickets = [];
+    console.log(names);
     names.forEach(name => {
         const user = users.find(user => user.name === name);
         if (user && Array.isArray(user.tickets)) {
             user.tickets.forEach(title => {
                 const ticket = tickets.find(t => t.title === title);
-                console.log(ticket);
                 ticket.user = name;
                 if (ticket) matchedTickets.push(ticket);
             });

@@ -44,5 +44,6 @@
     "attachments": [],
     "acceptance_criteria": [],
     "blocked_by": [],
-    "blocker": "True"
+    "blocker": "True",
+    "has_bug": "False"
 }

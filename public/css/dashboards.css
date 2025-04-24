@@ -1,7 +1,7 @@
 section.dashboard {
     background-color: var(--panel-grey);
     width: 25%;
-    max-width: 300px;
+    max-width: 280px;
     height: 100vh;
     display: flex;
     flex-direction: column;

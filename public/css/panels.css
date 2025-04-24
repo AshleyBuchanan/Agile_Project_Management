@@ -33,6 +33,10 @@
     font-size: larger;
 }
 
+.sprint {
+    color: var(--font-grey-dark);
+}
+
 .middle {
     font-weight: 600;
     font-size: medium;

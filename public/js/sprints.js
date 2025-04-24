@@ -1,5 +1,6 @@
 let myFilterSet = new Set();
 myFilterSet.add('Ashley');
+myFilterSet.add('Jasdeep');
 
 
 const navLinks = document.querySelectorAll('.nav-link');
@@ -106,25 +107,25 @@ function makeCardElement(c) {
     description.className = 'card-description';
     description.innerText = c.description;
 
-    const sprint_id = document.createElement('div');
-    sprint_id.className = 'card-sprint-id major';
-    sprint_id.innerText = c.sprint_id;
+    const epic = document.createElement('div');
+    epic.className = 'card-sprint-id major';
+    epic.innerText = c.epic;
 
     const tagsLine = document.createElement('div');
     tagsLine.className = 'card-tagsLine';
 
+    const has_bug = document.createElement('img');
+    if (c.has_bug === 'True') {
+        has_bug.className = 'card-icon';
+        has_bug.src = `/icons/bug_icon.png`;
+        tagsLine.append(has_bug);
+    }
+
     const blocker = document.createElement('img');
-    if (c.blocker) {
+    if (c.blocker === 'True') {
         blocker.className = 'card-icon';
         blocker.src = `/icons/blocker_icon.png`;
         tagsLine.append(blocker);
-    }
-
-    const epic = document.createElement('img');
-    if (c.epic) {
-        epic.className = 'card-icon';
-        epic.src = `/icons/epic_icon.png`;
-        tagsLine.append(epic);
     }
 
     const story_id = document.createElement('img');
@@ -146,7 +147,7 @@ function makeCardElement(c) {
 
     cardElement.append(id);
     cardElement.append(description);
-    cardElement.append(sprint_id);
+    cardElement.append(epic);
     cardElement.append(tagsLine);
     return cardElement;
 }
@@ -154,7 +155,7 @@ function makeCardElement(c) {
 function placeCards(cards) {
     cards.forEach(card => {
         for (let panel of panels) {
-            if (card.sprint_id === panel.dataset.project && card.step === panel.dataset.step) {
+            if (card.epic === panel.dataset.project && card.step === panel.dataset.step) {
                 const cardElement = makeCardElement(card);
                 cardElement.dataset.step = panel.dataset.step;
                 cardElement.setAttribute('draggable', 'true');
@@ -162,8 +163,8 @@ function placeCards(cards) {
                     e.dataTransfer.setData('text/plain', card.id);
                     e.dataTransfer.effectAllowed = 'move';
 
-                    const sprint_id = cardElement.querySelector('.card-sprint-id').innerText;
-                    console.log(sprint_id);
+                    const epic = cardElement.querySelector('.card-sprint-id').innerText;
+                    console.log(epic);
                     for (let panel of panels) {
                         const p_project = panel.dataset.project;
                         const c_step = cardElement.dataset.step;
@@ -174,7 +175,7 @@ function placeCards(cards) {
                             allowedFrom = (new Function(`return ${allowedFromRaw}`))();
                         }
 
-                        if (allowedFrom.includes(c_step) && p_project === sprint_id) {
+                        if (allowedFrom.includes(c_step) && p_project === epic) {
                             panel.classList.add('panel-selectable');
                         }
                     }
