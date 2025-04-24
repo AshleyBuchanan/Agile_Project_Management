@@ -26,12 +26,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/sprints', (req, res) => {
+    const page = 'sprints';
     const loggedUser = users[0];
     const activeSprint = 'FY25 Q3';
     const shortcuts = ['Jasdeep', 'Vinita', 'Praveen', 'Nivas', 'Josh Cantero', 'Ryan', 'Joshua Cheng', 'Ashley'];
     const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE'];
     const allEpics = ['User Onboarding', 'Dashboard Management', 'FM Month in Review', 'User Account Management', 'UI Polish', 'FM Another Big Thing'];
-    res.render('sprints', { loggedUser, activeSprint, shortcuts, panelNames, allEpics });
+    res.render('sprints', { page, loggedUser, activeSprint, shortcuts, panelNames, allEpics });
 });
 app.post('/sprints', async (req, res) => {
     const { names } = req.body;
