@@ -23,9 +23,10 @@ for (let panel of panels) {
 
     panel.addEventListener('drop', e => {
         e.preventDefault();
-        const title = e.dataTransfer.getData('text/plain');
+        const id = e.dataTransfer.getData('text/plain');
+        console.log('---', id);
         const card = [...document.querySelectorAll('.card')]
-            .find(c => c.querySelector('.card-title').innerText === title);
+            .find(c => c.querySelector('.card-id').innerText === id);
 
         const allowedFromRaw = panel.dataset.allowedfrom;
         let allowedFrom = [];
@@ -41,8 +42,8 @@ for (let panel of panels) {
 
                 //draw line through the card title
                 if (card.dataset.step === 'DONE') {
-                    const title = card.querySelector('.card-title');
-                    title.style.textDecoration = 'line-through';
+                    const id = card.querySelector('.card-id');
+                    id.style.textDecoration = 'line-through';
                 }
                 panel.scrollTo({ top: card.offsetTop - panel.offsetTop - panel.clientHeight / 2 + card.clientHeight / 2, behavior: 'smooth' });
             }
@@ -96,10 +97,10 @@ function makeCardElement(c) {
     const cardElement = document.createElement('div');
     cardElement.className = 'card';
 
-    const title = document.createElement('div');
-    title.className = 'card-title';
-    title.innerText = c.title;
-    if (c.step === 'DONE') title.style.textDecoration = 'line-through';
+    const id = document.createElement('div');
+    id.className = 'card-id';
+    id.innerText = c.id;
+    if (c.step === 'DONE') id.style.textDecoration = 'line-through';
 
     const description = document.createElement('div');
     description.className = 'card-description';
@@ -143,7 +144,7 @@ function makeCardElement(c) {
     userText.innerText = c.user;
     tagsLine.append(userText);
 
-    cardElement.append(title);
+    cardElement.append(id);
     cardElement.append(description);
     cardElement.append(sprint_id);
     cardElement.append(tagsLine);
@@ -158,7 +159,7 @@ function placeCards(cards) {
                 cardElement.dataset.step = panel.dataset.step;
                 cardElement.setAttribute('draggable', 'true');
                 cardElement.addEventListener('dragstart', e => {
-                    e.dataTransfer.setData('text/plain', card.title);
+                    e.dataTransfer.setData('text/plain', card.id);
                     e.dataTransfer.effectAllowed = 'move';
 
                     const sprint_id = cardElement.querySelector('.card-sprint-id').innerText;
