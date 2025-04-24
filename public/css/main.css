@@ -37,5 +37,17 @@ body {
     --card-grey: hsl(207, 20%, 80%);
     --card-grey-hover: hsl(207, 20%, 90%);
     --card-grey-light: hsl(207, 20%, 98%);
+
+    --epic-bg-color: gold;
+    --epic-color: black;
+    --story-bg-color: hsl(120, 60%, 40%);
+    --story-color: whitesmoke;
+    --task-bg-color: hsl(240, 60%, 60%);
+    --task-color: whitesmoke;
+    --bug-bg-color: black;
+    --bug-color: whitesmoke;
+    --spike-bg-color: hsl(0, 0%, 70%);
+    --spike-color: black;
+
     --blue-skies: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }

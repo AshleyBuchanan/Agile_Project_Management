@@ -61,26 +61,3 @@
     opacity: 1;
     text-shadow: 0 0 5px var(--card-grey);
 }
-
-.trivial {
-    background-color: hsl(0, 0%, 70%);
-    color: black;
-}
-
-.minor {
-    background-color: hsl(240, 60%, 60%);
-}
-
-.normal {
-    background-color: hsl(120, 60%, 40%);
-}
-
-.major {
-    background-color: hsl(0, 80%, 60%);
-}
-
-.blocker {
-    color: yellow;
-    background-color: hsl(0, 80%, 60%);
-    box-shadow: 0 0 3px red;
-}
