@@ -8,11 +8,9 @@ async function connectToMongo() {
         await client.connect();
         console.log("Connected successfully to MongoDB");
 
-        const db = client.db('APM_Main_DB'); // Replace with your database name
+        const db = client.db('APM_Main_DB');
         const tasksCollection = db.collection('APM_Tasks_Collection');
         const usersCollection = db.collection('APM_Users_Collection');
-
-
 
         return { tasksCollection, usersCollection };
     } catch (err) {
