@@ -5,17 +5,23 @@ const path = require('path');
 const port = 3000;
 const task1 = require('./task1.json');
 const task2 = require('./task2.json');
+const task3 = require('./task3.json');
+const task4 = require('./task4.json');
+const task5 = require('./task5.json');
+
 const users = [
     {
         name: 'Ashley',
         team: 'FM BE and Web',
         projects:
             [
-                'SPRINT-ABC'
+                'User Onboarding',
+                'Dashboard Management'
             ],
         tickets:
             [
                 'Implement Google sign-in',
+                'Add archive feature for completed tasks'
             ]
     },
     {
@@ -28,6 +34,30 @@ const users = [
         tickets:
             [
                 'Add connection for unconnected user',
+            ]
+    },
+    {
+        name: 'Vinita',
+        team: 'FM BE and Web',
+        projects:
+            [
+                'User Account Management'
+            ],
+        tickets:
+            [
+                'Create password reset flow',
+            ]
+    },
+    {
+        name: 'Praveen',
+        team: 'FM BE and Web',
+        projects:
+            [
+                'UI Polish'
+            ],
+        tickets:
+            [
+                'Ensure mobile responsiveness',
             ]
     }
 ];
@@ -143,6 +173,9 @@ const tickets = [
     },
     task1,
     task2,
+    task3,
+    task4,
+    task5,
 ];
 
 app.use(express.json());
@@ -152,16 +185,15 @@ app.set('view engine', 'ejs');
 app.get('/sprints', (req, res) => {
     const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE'];
     const shortcuts = ['Jasdeep', 'Vinita', 'Praveen', 'Nivas', 'Josh Cantero', 'Ryan', 'Joshua Cheng', 'Ashley'];
-    const allSprints = ['SPRINT-ABC', 'FM Month in Review - FY25 Q3', 'FM Member Feedback - FY25 Q3', 'FM Some other Task - FY25 Q3', 'FM Another Big Thing - FY25 Q3'];
-    const allEpics = ['User Onboarding', 'FM Month in Review', 'FM Member Feedback', 'FM Some other Task', 'FM Another Big Thing'];
+    const allEpics = ['User Onboarding', 'Dashboard Management', 'FM Month in Review', 'User Account Management', 'UI Polish', 'FM Another Big Thing'];
     const activeSprint = 'FY25 Q3';
     res.render('sprints', { panelNames, shortcuts, allEpics, users, activeSprint });
 });
 app.post('/sprints', (req, res) => {
     const { names } = req.body;
     const matchedTickets = [];
-    console.log(names);
     names.forEach(name => {
+        console.log(name);
         const user = users.find(user => user.name === name);
         if (user && Array.isArray(user.tickets)) {
             user.tickets.forEach(title => {

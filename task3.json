@@ -1,0 +1,47 @@
+{
+    "id": "TASK-0003",
+    "title": "Create password reset flow",
+    "description": "Allow users to reset their password via email with a secure token.",
+    "step": "START",
+    "priority": "major",
+    "assignee": {
+        "name": "Vinita",
+        "id": "user-002"
+    },
+    "created_at": "2025-04-22T14:00:00Z",
+    "updated_at": "2025-04-22T14:00:00Z",
+    "due_date": "2025-04-28",
+    "estimated_hours": 8,
+    "time_spent_hours": 0,
+    "labels": [
+        "auth",
+        "backend",
+        "security"
+    ],
+    "epic": "User Account Management",
+    "sprint_id": "SPRINT-ABC",
+    "story_id": "STORY-206",
+    "subtasks": [
+        {
+            "id": "SUB-3",
+            "title": "Design token expiration and validation strategy",
+            "status": "To Do"
+        },
+        {
+            "id": "SUB-4",
+            "title": "Implement reset form UI",
+            "status": "To Do"
+        }
+    ],
+    "comments": [],
+    "dependencies": [],
+    "attachments": [],
+    "acceptance_criteria": [
+        "Reset email is sent securely",
+        "Token expires within 15 minutes",
+        "User can reset password with valid token"
+    ],
+    "blocked_by": [],
+    "blocker": "False",
+    "has_bug": "False"
+}

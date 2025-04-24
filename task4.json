@@ -1,0 +1,49 @@
+{
+    "id": "TASK-0004",
+    "title": "Ensure mobile responsiveness",
+    "description": "Fix layout issues on mobile devices for the dashboard panels.",
+    "step": "IN PROGRESS",
+    "priority": "minor",
+    "assignee": {
+        "name": "Praveen",
+        "id": "user-027"
+    },
+    "created_at": "2025-04-21T09:30:00Z",
+    "updated_at": "2025-04-23T15:30:00Z",
+    "due_date": "2025-04-26",
+    "estimated_hours": 4,
+    "time_spent_hours": 1.5,
+    "labels": [
+        "frontend",
+        "ui",
+        "responsive"
+    ],
+    "epic": "UI Polish",
+    "sprint_id": "SPRINT-ABC",
+    "story_id": "STORY-207",
+    "subtasks": [
+        {
+            "id": "SUB-5",
+            "title": "Update flexbox settings for panels",
+            "status": "Done"
+        },
+        {
+            "id": "SUB-6",
+            "title": "Test layout on iOS and Android devices",
+            "status": "In Progress"
+        }
+    ],
+    "comments": [
+        {
+            "user": "Ashley",
+            "timestamp": "2025-04-23T11:10:00Z",
+            "message": "iOS looks fine now. Android spacing still off."
+        }
+    ],
+    "dependencies": [],
+    "attachments": [],
+    "acceptance_criteria": [],
+    "blocked_by": [],
+    "blocker": "False",
+    "has_bug": "False"
+}

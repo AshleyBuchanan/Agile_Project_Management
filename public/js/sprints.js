@@ -1,6 +1,8 @@
 let myFilterSet = new Set();
 myFilterSet.add('Ashley');
 myFilterSet.add('Jasdeep');
+myFilterSet.add('Vinita');
+myFilterSet.add('Praveen');
 
 
 const navLinks = document.querySelectorAll('.nav-link');

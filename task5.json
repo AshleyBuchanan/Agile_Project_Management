@@ -1,0 +1,47 @@
+{
+    "id": "TASK-0005",
+    "title": "Add archive feature for completed tasks",
+    "description": "Users should be able to archive completed tasks to declutter the UI.",
+    "step": "START",
+    "priority": "major",
+    "assignee": {
+        "name": "Ashley",
+        "id": "user-007"
+    },
+    "created_at": "2025-04-20T12:00:00Z",
+    "updated_at": "2025-04-20T12:00:00Z",
+    "due_date": "2025-04-27",
+    "estimated_hours": 5,
+    "time_spent_hours": 0,
+    "labels": [
+        "feature",
+        "backend",
+        "ui"
+    ],
+    "epic": "Dashboard Management",
+    "sprint_id": "SPRINT-ABC",
+    "story_id": "STORY-208",
+    "subtasks": [
+        {
+            "id": "SUB-7",
+            "title": "Backend endpoint for archiving",
+            "status": "To Do"
+        },
+        {
+            "id": "SUB-8",
+            "title": "Archive button in card UI",
+            "status": "To Do"
+        }
+    ],
+    "comments": [],
+    "dependencies": [],
+    "attachments": [],
+    "acceptance_criteria": [
+        "Tasks marked as DONE can be archived",
+        "Archived tasks are hidden by default but viewable",
+        "Archiving is reversible"
+    ],
+    "blocked_by": [],
+    "blocker": "False",
+    "has_bug": "False"
+}
