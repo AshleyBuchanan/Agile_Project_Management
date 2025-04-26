@@ -38,9 +38,9 @@ body {
     --card-grey-hover: hsl(207, 20%, 90%);
     --card-grey-light: hsl(207, 20%, 98%);
 
-    --initiative-bg-color: hsl(51, 100%, 80%);
+    --initiative-bg-color: hsl(112, 50%, 80%);
     --initiative-color: black;
-    --epic-bg-color: gold;
+    --epic-bg-color: hsl(51, 100%, 90%);
     --epic-color: black;
     --story-bg-color: hsl(120, 60%, 40%);
     --story-color: whitesmoke;

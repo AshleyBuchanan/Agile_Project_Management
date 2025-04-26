@@ -65,10 +65,10 @@ function makeTaskElement(t) {
     description.innerText = t.description;
     block.append(description);
 
-    const epic = document.createElement('div');
-    epic.className = 'task-text task-epic task-is-task';
-    epic.innerText = t.epic;
-    block.append(epic);
+    const epicTitle = document.createElement('div');
+    epicTitle.className = 'task-text task-epic task-is-task';
+    epicTitle.innerText = t.title;
+    block.append(epicTitle);
 
     const priority = document.createElement('img');
     priority.className = 'task-icon';
@@ -81,7 +81,7 @@ function makeTaskElement(t) {
         story_id.src = `/icons/story_icon.png`;
         tagsLine.append(story_id);
 
-        epic.classList.add('task-is-story');
+        epicTitle.classList.add('task-is-story');
     }
 
     const has_bug = document.createElement('img');
@@ -90,7 +90,7 @@ function makeTaskElement(t) {
         has_bug.src = `/icons/bug_icon.png`;
         tagsLine.append(has_bug);
 
-        epic.classList.add('task-is-bug');
+        epicTitle.classList.add('task-is-bug');
     }
 
     const blocker = document.createElement('img');
@@ -99,20 +99,34 @@ function makeTaskElement(t) {
         blocker.src = `/icons/blocker_icon.png`;
         tagsLine.append(blocker);
 
-        epic.classList.add('task-is-blocker');
+        epicTitle.classList.add('task-is-blocker');
     }
 
     const initiative = document.createElement('img');
-    if (t.initiative) {
+    if (t.is_initiative === 'True') {
+        console.log(t.is_initiative);
         initiative.className = 'task-icon';
         // change this later!
         initiative.src = `/icons/epic_icon.png`;
         tagsLine.append(initiative);
 
-        epic.innerText = t.initiative;
-        epic.classList.add('task-is-initiative');
+        epicTitle.innerText = t.initiative;
+        epicTitle.classList.add('task-is-initiative');
 
         block.classList.add('task-is-initiative');
+    }
+
+    const epic = document.createElement('img');
+    if (t.is_epic === 'True') {
+        epic.className = 'task-icon';
+        // change this later!
+        epic.src = `/icons/epic_icon.png`;
+        tagsLine.append(epic);
+
+        // epic.innerText = t.epic;
+        epicTitle.classList.add('task-is-epic');
+
+        block.classList.add('task-is-epic');
     }
 
     const userText = document.createElement('div');
