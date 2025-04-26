@@ -1,0 +1,110 @@
+.listing {
+    margin: 0 10px;
+    background-color: var(--panel-grey);
+    display: flex;
+    flex-direction: column;
+}
+
+.task-block {
+    display: flex;
+    flex-direction: row;
+    font-size: small;
+    padding: 5px 10px;
+    margin: 1px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: var(--card-grey-light);
+    border: 1px solid var(--card-grey);
+    border-radius: 2px;
+    box-shadow:
+        0 2px 3px var(--card-grey),
+        inset 0 0 20px 20px var(--card-grey-light);
+}
+
+.task-block:first-child {
+    margin-top: 5px;
+}
+
+.task-block:last-child {
+    margin-bottom: 5px;
+}
+
+.task-id {
+    color: var(--font-grey);
+    font-size: small;
+    font-weight: 700;
+}
+
+.task-text {
+    font-size: small;
+    margin-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-epic {
+    flex: 0 1 10%;
+    padding: 0 10px 2px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.task-title {
+    font-weight: 500;
+    flex: 0 1 20%;
+}
+
+.task-description {
+    flex: 0 2 40%;
+}
+
+.tags-line {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    max-height: 20px;
+    width: 100px;
+}
+
+.task-icon {
+    width: 20px;
+    margin: 0 2px;
+}
+
+.task-is-task {
+    background-color: var(--task-bg-color);
+    color: var(--task-color);
+}
+
+.task-is-story {
+    background-color: var(--story-bg-color);
+    color: var(--task-color);
+}
+
+.task-is-blocker {
+    background-color: var(--blocker-bg-color);
+    color: var(--blocker-color);
+}
+
+.task-is-bug {
+    background-color: var(--bug-bg-color);
+    color: var(--bug-color);
+}
+
+.task-is-spike {
+    background-color: var(--spike-bg-color);
+    color: var(--spike-color);
+}
+
+.task-is-initiative {
+    box-shadow: 0 0 2px var(--bubble-grey-dark);
+    background-color: var(--initiative-bg-color);
+    color: var(--initiative-color);
+}
+
+.task-user-right {
+    margin-left: auto;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile Project Manager</title>
+    <link rel="icon" href="/icons/agileImage.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/dashboards.css">
+    <link rel="stylesheet" href="/css/top_levels.css">
+    <link rel="stylesheet" href="/css/tasks.css">
+</head>
+<body>
+    <%- include('partials/nav.ejs') %>
+
+    <div class="main-flex">
+
+        <%- include('partials/dashboard.ejs') %> 
+
+        <div class="main-container">
+ 
+            <%- include('partials/top_levels.ejs') %>
+
+            <div class="listing">
+                <!-- tasks here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/tasks.js"></script>
+</body>
+</html>

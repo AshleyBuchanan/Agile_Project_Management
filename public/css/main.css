@@ -38,6 +38,8 @@ body {
     --card-grey-hover: hsl(207, 20%, 90%);
     --card-grey-light: hsl(207, 20%, 98%);
 
+    --initiative-bg-color: hsl(51, 100%, 80%);
+    --initiative-color: black;
     --epic-bg-color: gold;
     --epic-color: black;
     --story-bg-color: hsl(120, 60%, 40%);
@@ -48,6 +50,8 @@ body {
     --bug-color: whitesmoke;
     --spike-bg-color: hsl(0, 0%, 70%);
     --spike-color: black;
+    --blocker-bg-color: hsl(0, 100%, 40%);
+    --blocker-color: whitesmoke;
 
     --blue-skies: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }

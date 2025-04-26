@@ -25,6 +25,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 app.get('/sprints', (req, res) => {
     const page = 'sprints';
     const loggedUser = users[0];
@@ -50,6 +51,18 @@ app.post('/sprints', async (req, res) => {
         }
     });
     res.json(matchedTasks);
+});
+app.get('/tasks', (req, res) => {
+    const page = 'tasks';
+    const loggedUser = users[0];
+    const activeSprint = 'FY25 Q3';
+    const shortcuts = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE', 'ALL'];
+    const allEpics = ['User Onboarding', 'Dashboard Management', 'FM Month in Review', 'User Account Management', 'UI Polish', 'FM Another Big Thing'];
+    res.render('tasks', { page, loggedUser, activeSprint, shortcuts, allEpics });
+});
+app.post('/tasks', async (req, res) => {
+    const { names } = req.body;
+    res.json(tasks);
 });
 
 

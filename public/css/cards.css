@@ -21,7 +21,7 @@
     font-weight: 700;
 }
 
-.card-description {
+.card-title {
     margin-top: 20px;
     width: 65%;
 }
@@ -33,8 +33,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: whitesmoke;
     border-radius: 5px;
+    background-color: var(--task-bg-color);
+    color: var(--task-color);
 }
 
 .card-tagsLine {
@@ -60,4 +61,29 @@
     margin-left: 62%;
     opacity: 1;
     text-shadow: 0 0 5px var(--card-grey);
+}
+
+.card-is-story {
+    background-color: var(--story-bg-color);
+    color: var(--task-color);
+}
+
+.card-is-epic {
+    background-color: var(--epic-bg-color);
+    color: var(--epic-color);
+}
+
+.card-is-blocker {
+    background-color: var(--blocker-bg-color);
+    color: var(--blocker-color);
+}
+
+.card-is-bug {
+    background-color: var(--bug-bg-color);
+    color: var(--bug-color);
+}
+
+.card-is-spike {
+    background-color: var(--spike-bg-color);
+    color: var(--spike-color);
 }

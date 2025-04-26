@@ -7,17 +7,10 @@ myFilterSet.add('Praveen');
 
 const navLinks = document.querySelectorAll('.nav-link');
 for (let navLink of navLinks) {
-    navLink.addEventListener('click', e => {
-        const links = document.querySelectorAll('.nav-link');
-        for (let link of links) {
-            if (link.innerText === e.target.innerText) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        }
-    });
+    //set correct link to current page
+    if (navLink.innerText === 'Sprints') navLink.classList.add('active');
 }
+
 const panels = document.querySelectorAll('.panel');
 for (let panel of panels) {
     panel.addEventListener('dragover', e => {
@@ -27,7 +20,6 @@ for (let panel of panels) {
     panel.addEventListener('drop', e => {
         e.preventDefault();
         const id = e.dataTransfer.getData('text/plain');
-        console.log('---', id);
         const card = [...document.querySelectorAll('.card')]
             .find(c => c.querySelector('.card-id').innerText === id);
 
@@ -105,22 +97,33 @@ function makeCardElement(c) {
     id.innerText = c.id;
     if (c.step === 'DONE') id.style.textDecoration = 'line-through';
 
-    const description = document.createElement('div');
-    description.className = 'card-description';
-    description.innerText = c.description;
+    const title = document.createElement('div');
+    title.className = 'card-title';
+    title.innerText = `${c.title}`;
 
     const epic = document.createElement('div');
-    epic.className = 'card-epic major';
+    epic.className = 'card-epic';
     epic.innerText = c.epic;
 
     const tagsLine = document.createElement('div');
     tagsLine.className = 'card-tagsLine';
+
+    const story_id = document.createElement('img');
+    if (c.story_id) {
+        story_id.className = 'card-icon';
+        story_id.src = `/icons/story_icon.png`;
+        tagsLine.append(story_id);
+
+        epic.className = 'card-epic card-is-story';
+    }
 
     const has_bug = document.createElement('img');
     if (c.has_bug === 'True') {
         has_bug.className = 'card-icon';
         has_bug.src = `/icons/bug_icon.png`;
         tagsLine.append(has_bug);
+
+        epic.className = 'card-epic card-is-bug';
     }
 
     const blocker = document.createElement('img');
@@ -128,13 +131,8 @@ function makeCardElement(c) {
         blocker.className = 'card-icon';
         blocker.src = `/icons/blocker_icon.png`;
         tagsLine.append(blocker);
-    }
 
-    const story_id = document.createElement('img');
-    if (c.story_id) {
-        story_id.className = 'card-icon';
-        story_id.src = `/icons/story_icon.png`;
-        tagsLine.append(story_id);
+        epic.className = 'card-epic card-is-blocker';
     }
 
     const priority = document.createElement('img');
@@ -148,7 +146,7 @@ function makeCardElement(c) {
     tagsLine.append(userText);
 
     cardElement.append(id);
-    cardElement.append(description);
+    cardElement.append(title);
     cardElement.append(epic);
     cardElement.append(tagsLine);
     return cardElement;
@@ -197,7 +195,6 @@ function inquire() {
     xhr.onload = function () {
         if (xhr.status === 200) {
             const userData = JSON.parse(xhr.responseText);
-            console.log(userData);
             placeCards(userData);
         } else {
             console.error('Something went wrong:', xhr.status);

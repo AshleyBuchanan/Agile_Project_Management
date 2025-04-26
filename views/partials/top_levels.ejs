@@ -1,0 +1,21 @@
+<div class="top-level-1">
+    <div class="left">Active Sprint <span class="left sprint"><%- activeSprint %></span></div>
+    <span class="right"></span>
+
+    <div>
+        <div class="middle">&#128337; 10 days remaining <span class="bubble-long inactive">Complete sprint</span></div>
+       
+    </div>
+    <div class="right-margin">
+        <span class="bubble-long">Links Hierarchy</span>
+        <span class="bubble-long">Board</span> 
+        <span class="bubble-long">&circlearrowleft;</span> 
+    </div>
+
+</div>
+<div class="top-level-2">
+    <span class="quick-filter">QUICK FILTERS:</span>
+    <% for (let i=0; i<shortcuts.length; i++){ %>
+        <div class="bubble-long"><%- shortcuts[i] %></div>
+    <% } %>
+</div>
