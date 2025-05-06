@@ -64,7 +64,11 @@ app.post('/tasks', async (req, res) => {
     const { names } = req.body;
     res.json(tasks);
 });
-
+app.get('/', (req, res) => {
+    page = 'landing';
+    const loggedUser = users[0];
+    res.render('landing', { loggedUser });
+});
 
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
 

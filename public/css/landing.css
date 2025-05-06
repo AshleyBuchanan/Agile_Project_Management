@@ -1,0 +1,89 @@
+.main-container {
+    justify-content: center;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    border-radius: 5px;
+    flex: 0 0 400px;
+    align-self: center;
+    background-color: var(--bubble-grey);
+    box-shadow: -.25px 1px 4px var(--bubble-grey);
+}
+
+.top,
+.center,
+.bottom {
+    width: 100%;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 30%;
+}
+
+
+.label {
+    margin-right: 20px;
+    width: 20%;
+}
+
+#password,
+#email {
+    width: 50%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: inset 0 0 5px var(--bubble-grey-dark);
+    border: none;
+    transition: all 500ms;
+    color: whitesmoke;
+}
+
+#password::placeholder,
+#email::placeholder {
+    color: lightgrey;
+    margin-left: 10px;
+}
+
+
+
+#password:focus-visible,
+#email:focus-visible {
+    outline: none;
+    box-shadow:
+        inset 0 0 5px var(--bubble-grey-dark),
+        0 0 20px var(--bubble-grey-light);
+}
+
+.form-button {
+    height: 25px;
+    margin: 0 5px;
+    text-align: center;
+    font-size: small;
+    border-radius: 5px;
+    padding: 10px 15px;
+    box-shadow: 0 1px 5px var(--bubble-grey-dark);
+    background-color: var(--bubble-grey);
+    color: whitesmoke;
+    align-content: center;
+    flex: 0 1 21%;
+    transition: all 250ms;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    box-shadow:
+        0 1px 5px var(--bubble-grey-dark),
+        inset 0 0 5px var(--bubble-grey-light);
+}
+
+.form-button .active {
+    translate: 0 1px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile Project Manager</title>
+    <link rel="icon" href="/icons/agileImage.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/dashboards.css">
+    <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+    <%- include('partials/nav.ejs') %>
+
+    <div class="main-flex">
+
+        <!-- <%- include('partials/dashboard.ejs') %>  -->
+
+        <div class="main-container">
+ 
+            <form class="welcome">
+                <div class="top">
+                    <div class="label">email address</div>
+                    <input type="email" name="email" id="email" placeholder="your_email@somewhere.com">
+                </div>
+                <div class="center">
+                    <div class="label">password</div>
+                    <input type="password" name="password" id="password" placeholder="uR-p@$$w0rD_15&">  
+                </div>
+                <div class="bottom">
+                    <div class="form-button">create account</div>
+                    <div class="form-button">forgot password</div>
+                    <div class="form-button">login</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/landing.js"></script>
+</body>
+</html>
