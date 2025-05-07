@@ -54,6 +54,7 @@ a {
 .nav-link:hover,
 .nav-button:hover {
     background-color: var(--bubble-grey-light);
+    cursor: pointer;
 }
 
 .nav-link.active {
@@ -123,6 +124,7 @@ input[type='search']::placeholder {
     border-top: 1px solid var(--panel-grey-dark);
     margin-top: 5%;
     padding: 5%;
+    cursor: pointer;
 }
 
 .show {

@@ -98,18 +98,25 @@ app.post('/login', async (req, res) => {
         } catch (err) {
             console.error('failed', err.message);
         }
-        res.json({ response: 'true', username: foundUser.name, _id: foundUser._id });
+        res.json({ response: 'true', username: foundUser.name, user_id: foundUser._id, user_email: foundUser.email });
     } else {
         res.json({ response: 'false' });
     }
 });
 app.post('/logout', async (req, res) => {
     const { userId } = req.body;
+    const objectId = new mongoose.Types.ObjectId(userId);
+
     try {
-        await LoggedUser.deleteOne({ id: userId });
+        console.log('Removing from DB:', objectId);
+        await LoggedUser.updateOne(
+            { _id: '681a834058b558506a3bb5b6' },
+            { $pull: { loggedOn: objectId } }
+        );
         res.json({ response: 'true' });
     } catch (err) {
-        res.status(500).json({ response: 'false', error: err.message });
+        console.error('failed', err.message);
+        res.json({ response: 'false' });
     }
 });
 

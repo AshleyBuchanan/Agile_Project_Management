@@ -63,7 +63,7 @@
     border-color: transparent;
     box-shadow: inset 0 0 5px var(--bubble-grey-dark);
     border: none;
-    transition: all 500ms;
+    transition: all 150ms;
     color: whitesmoke;
 }
 
@@ -96,23 +96,26 @@
     color: whitesmoke;
     align-content: center;
     flex: 0 1 21%;
-    transition: all 250ms;
+    transition: all 150ms;
     cursor: pointer;
 }
 
-.form-button:hover {
+.hovered {
     box-shadow:
         0 1px 5px var(--bubble-grey-dark),
-        inset 0 0 5px var(--bubble-grey-light);
+        0 0 20px var(--bubble-grey-light),
+        inset 0 0 2px var(--bubble-grey-dark);
 }
 
-.form-button .active {
+.pressed {
     translate: 0 1px;
+    box-shadow: 0 1px 1px var(--bubble-grey-dark) !important;
 }
 
 .disabled {
     opacity: .5;
     background-color: var(--bubble-grey);
-    translate: 0 2px;
-    box-shadow: 0 1px 3px var(--bubble-grey-dark);
+    translate: 0 1px;
+    box-shadow: 0 1px 1px var(--bubble-grey-dark);
+    cursor: default;
 }

@@ -2,7 +2,9 @@
 const _email = document.querySelector('#email');
 //password
 const _password = document.querySelector('#password');
-//login
+//all buttons
+const _bottom = document.querySelector('.bottom');
+//login button (for disabling/enabling)
 const _login = document.querySelector('#login-button');
 //badCredentials
 const badCredentials = document.querySelector('.welcome-bottom');
@@ -71,9 +73,11 @@ function unauthorized() {
     badCredentials.classList.add('show');
 }
 
-function authorized(name, id) {
+function authorized(name, id, email) {
+    console.log(name, id, email);
     window.localStorage.setItem('loggedUser', name);
     window.localStorage.setItem('logged_uid', id);
+    window.localStorage.setItem('loggedEmail', email);
     window.location.href = '/tasks';
 }
 
@@ -85,8 +89,8 @@ function loginRequest() {
 
     xhr.onload = function () {
         if (xhr.status === 200) {
-            const { response, username, _id } = JSON.parse(xhr.responseText);
-            if (response === 'true') authorized(username, _id);
+            const { response, username, user_id, user_email } = JSON.parse(xhr.responseText);
+            if (response === 'true') authorized(username, user_id, user_email);
             if (response === 'false') unauthorized();
         } else {
             console.error('Something went wrong:', xhr.status);
@@ -101,11 +105,11 @@ if (validEmail() === true) {
     _login.classList.remove('disabled');
 }
 
-_login.addEventListener('click', (e) => {
+_login.addEventListener('mouseup', e => {
     if (!_login.classList.contains('disabled')) loginRequest();
 });
 
-_email.addEventListener('input', (e) => {
+_email.addEventListener('input', e => {
     badCredentials.classList.remove('show');
     if (validEmail() === true && validPassword() === true) {
         _login.classList.remove('disabled');
@@ -113,11 +117,32 @@ _email.addEventListener('input', (e) => {
         _login.classList.add('disabled');
     }
 });
-_password.addEventListener('input', (e) => {
+
+_password.addEventListener('input', e => {
     badCredentials.classList.remove('show');
     if (validEmail() === true && validPassword() === true) {
         _login.classList.remove('disabled');
     } else {
         _login.classList.add('disabled');
     }
+});
+
+//three buttons in the bottom div
+_bottom.addEventListener('mouseover', e => {
+    if (e.target.classList.contains('form-button') &&
+        (!e.target.classList.contains('disabled'))) {
+        e.target.classList.add('hovered');
+    }
+});
+_bottom.addEventListener('mouseout', e => {
+    if (e.target.classList.contains('form-button') &&
+        (!e.target.classList.contains('disabled'))) {
+        e.target.classList.remove('hovered');
+    }
+});
+_bottom.addEventListener('mousedown', e => {
+    e.target.classList.add('pressed');
+});
+_bottom.addEventListener('mouseup', e => {
+    e.target.classList.remove('pressed');
 });
