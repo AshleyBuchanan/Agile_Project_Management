@@ -104,7 +104,7 @@ function makeTaskElement(t) {
 
     const initiative = document.createElement('img');
     if (t.is_initiative === 'True') {
-        console.log(t.is_initiative);
+        //console.log(t.is_initiative);
         initiative.className = 'task-icon';
         // change this later!
         initiative.src = `/icons/epic_icon.png`;

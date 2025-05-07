@@ -27,6 +27,7 @@ body {
 }
 
 :root {
+    --panel-grey-dark: hsl(208, 29%, 50%);
     --panel-grey: rgba(222, 230, 237, .75);
     --panel-grey-selected: hsl(207, 40%, 75%);
     --bubble-grey-light: hsl(207, 40%, 75%);
@@ -52,6 +53,8 @@ body {
     --spike-color: black;
     --blocker-bg-color: hsl(0, 100%, 40%);
     --blocker-color: whitesmoke;
+
+    --bad-credential-bg-color: hsl(0, 50%, 40%);
 
     --blue-skies: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }

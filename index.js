@@ -3,6 +3,14 @@ const app = express();
 const path = require('path');
 const port = 3000;
 const connectToMongo = require('./db/mongo');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/APM_Main_DB', {})
+    .then(() => console.log('Mongoose  successfully  connected'))
+    .catch(err => console.error('Mongoose connection error:', err));
+const loggedUserSchema = new mongoose.Schema({
+    loggedOn: [mongoose.Schema.Types.Mixed] // or ObjectId if strictly ObjectIds
+});
+const LoggedUser = mongoose.model('LoggedUser', loggedUserSchema, 'APM_LoggedOn_Collection');
 
 async function getData() {
     const { tasksCollection, usersCollection } = await connectToMongo();
@@ -12,6 +20,7 @@ async function getData() {
 }
 let tasks = [];
 let users = [];
+let loggedUsers = new Set();
 
 (async () => {
     try {
@@ -28,12 +37,11 @@ app.set('view engine', 'ejs');
 
 app.get('/sprints', (req, res) => {
     const page = 'sprints';
-    const loggedUser = users[0];
     const activeSprint = 'FY25 Q3';
     const shortcuts = ['Jasdeep', 'Vinita', 'Praveen', 'Nivas', 'Josh Cantero', 'Ryan', 'Joshua Cheng', 'Ashley'];
     const panelNames = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE'];
     const allEpics = ['User Onboarding', 'Dashboard Management', 'FM Month in Review', 'User Account Management', 'UI Polish', 'FM Another Big Thing'];
-    res.render('sprints', { page, loggedUser, activeSprint, shortcuts, panelNames, allEpics });
+    res.render('sprints', { page, activeSprint, shortcuts, panelNames, allEpics });
 });
 app.post('/sprints', async (req, res) => {
     const { names } = req.body;
@@ -54,20 +62,55 @@ app.post('/sprints', async (req, res) => {
 });
 app.get('/tasks', (req, res) => {
     const page = 'tasks';
-    const loggedUser = users[0];
     const activeSprint = 'FY25 Q3';
     const shortcuts = ['START', 'BLOCKED', 'IN PROGRESS', 'CODE REVIEW', 'TESTING', 'QE VALIDATION', 'DONE', 'ALL'];
     const allEpics = ['User Onboarding', 'Dashboard Management', 'FM Month in Review', 'User Account Management', 'UI Polish', 'FM Another Big Thing'];
-    res.render('tasks', { page, loggedUser, activeSprint, shortcuts, allEpics });
+    res.render('tasks', { page, activeSprint, shortcuts, allEpics });
 });
 app.post('/tasks', async (req, res) => {
     const { names } = req.body;
     res.json(tasks);
 });
+
+app.get('/login', (req, res) => {
+    page = 'login';
+    res.render('login', { page });
+});
 app.get('/', (req, res) => {
-    page = 'landing';
-    const loggedUser = users[0];
-    res.render('landing', { loggedUser });
+    page = 'login';
+    res.render('login', { page });
+});
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    console.log('-', email);
+    console.log('-', password);
+
+    const foundUser = users.find(user => user.email === email && user.pass === password);
+    if (foundUser) {
+        loggedUsers.add(foundUser._id);
+        console.log(loggedUsers);
+        try {
+            console.log('Saving to DB:', { id: foundUser._id, on: true });
+            await LoggedUser.updateOne(
+                { _id: '681a834058b558506a3bb5b6' },
+                { $push: { loggedOn: foundUser._id } }
+            );
+        } catch (err) {
+            console.error('failed', err.message);
+        }
+        res.json({ response: 'true', username: foundUser.name, _id: foundUser._id });
+    } else {
+        res.json({ response: 'false' });
+    }
+});
+app.post('/logout', async (req, res) => {
+    const { userId } = req.body;
+    try {
+        await LoggedUser.deleteOne({ id: userId });
+        res.json({ response: 'true' });
+    } catch (err) {
+        res.status(500).json({ response: 'false', error: err.message });
+    }
 });
 
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
