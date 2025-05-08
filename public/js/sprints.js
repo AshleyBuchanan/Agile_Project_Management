@@ -1,3 +1,8 @@
+const body = document.querySelector('.main-container');
+setTimeout(() => {
+    body.style.opacity = 1;
+}, 500);
+
 let myFilterSet = new Set();
 myFilterSet.add('Ashley');
 myFilterSet.add('Jasdeep');

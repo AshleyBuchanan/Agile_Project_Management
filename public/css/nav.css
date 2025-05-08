@@ -78,7 +78,8 @@ input[type='search']::placeholder {
     position: absolute;
     right: 5px;
     width: 350px;
-    background-color: white;
+    background-color: var(--panel-grey);
+    backdrop-filter: blur(20px);
     border-radius: 2px;
     z-index: 400;
     box-shadow: -.25px 1px 4px var(--bubble-grey);
@@ -98,7 +99,7 @@ input[type='search']::placeholder {
     padding: 5%;
     text-align: center;
     font-size: large;
-    background-color: var(--panel-grey);
+    background-color: var(--bubble-grey-light);
     border-radius: 2px;
 }
 

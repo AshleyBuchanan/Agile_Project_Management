@@ -119,6 +119,10 @@ app.post('/logout', async (req, res) => {
         res.json({ response: 'false' });
     }
 });
+app.get('/create', (req, res) => {
+    console.log('Serving Create Account Page *****');
+    res.render('create');
+});
 
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
 

@@ -1,3 +1,8 @@
+const body = document.querySelector('.main-container');
+setTimeout(() => {
+    body.style.opacity = 1;
+}, 500);
+
 //email
 const _email = document.querySelector('#email');
 //password
@@ -57,6 +62,14 @@ const commonEmailExtensions = [
 //regex
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
+//using this to auto redirect if already logged in
+function getCurrentUser() {
+    const currentUser = window.localStorage.getItem('loggedUser');
+    const currentEmail = window.localStorage.getItem('loggedEmail');
+    if (currentUser && currentEmail) window.location.href = '/tasks';
+}
+getCurrentUser();
+
 function validEmail() {
     return (
         _email.value.includes('@') &&
@@ -78,7 +91,7 @@ function authorized(name, id, email) {
     window.localStorage.setItem('loggedUser', name);
     window.localStorage.setItem('logged_uid', id);
     window.localStorage.setItem('loggedEmail', email);
-    window.location.href = '/tasks';
+    fadeOut('/tasks');
 }
 
 function loginRequest() {
@@ -100,14 +113,16 @@ function loginRequest() {
     xhr.send(JSON.stringify({ email: _email.value, password: _password.value }));
 }
 
+function fadeOut(href) {
+    body.style.opacity = 0;
+    setTimeout(() => {
+        if (href) window.location.href = href;
+    }, 250);
+}
 //initial check for pre-populated email
 if (validEmail() === true) {
     _login.classList.remove('disabled');
 }
-
-_login.addEventListener('mouseup', e => {
-    if (!_login.classList.contains('disabled')) loginRequest();
-});
 
 _email.addEventListener('input', e => {
     badCredentials.classList.remove('show');
@@ -127,7 +142,7 @@ _password.addEventListener('input', e => {
     }
 });
 
-//three buttons in the bottom div
+//three buttons in the bottom div (delegate)
 _bottom.addEventListener('mouseover', e => {
     if (e.target.classList.contains('form-button') &&
         (!e.target.classList.contains('disabled'))) {
@@ -145,4 +160,12 @@ _bottom.addEventListener('mousedown', e => {
 });
 _bottom.addEventListener('mouseup', e => {
     e.target.classList.remove('pressed');
+
+    if (e.target.id === 'login-button' &&
+        (!e.target.classList.contains('disabled'))) {
+        loginRequest();
+    }
+    if (e.target.id === 'create-button') {
+        fadeOut('/create');
+    }
 });

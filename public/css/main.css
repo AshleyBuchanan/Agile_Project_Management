@@ -19,6 +19,8 @@ body {
 }
 
 .main-container {
+    opacity: 0;
+    transition: opacity 500ms;
     flex-grow: 1;
     overflow: hidden;
     display: flex;
@@ -55,6 +57,7 @@ body {
     --blocker-color: whitesmoke;
 
     --bad-credential-bg-color: hsl(0, 50%, 40%);
+    --welcome-aboard-bg-color: hsl(120, 70%, 80%);
 
     --blue-skies: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }

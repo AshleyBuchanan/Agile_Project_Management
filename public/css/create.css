@@ -12,7 +12,7 @@
     align-items: center;
     width: 700px;
     border-radius: 5px;
-    flex: 0 0 400px;
+    flex: 0 0 800px;
     align-self: center;
     background-color: var(--bubble-grey);
     box-shadow: -.25px 1px 4px var(--bubble-grey);
@@ -21,28 +21,60 @@
 .welcome-bottom {
     flex: 0 0 60px;
     translate: 0 -5px;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 500ms;
 }
 
 .top,
 .center,
 .bottom,
-.bad-credentials {
+.welcome-aboard {
     width: 100%;
     color: whitesmoke;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex: 1 0 25%;
+    flex: 1 1 30%;
+    /* border: 1px solid black; */
 }
 
-.bad-credentials {
+.top {
+    margin-top: 20px;
+}
+
+.center {
+    margin-top: 30px;
+}
+
+.welcome-aboard {
     flex: 1 1 10%;
-    background-color: var(--bad-credential-bg-color);
+    background-color: var(--welcome-aboard-bg-color);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    color: black;
+}
+
+.column {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid green; */
+}
+
+p {
+    padding: 0 10px;
+}
+
+span.cursive {
+    padding-left: 2px;
+    font-size: 1.1em;
+    font-style: italic;
+    font-stretch: expanded;
+    color: whitesmoke;
+    text-shadow: 0 0 4px darkgreen,
+        0 0 1px black,
+        0 0 1px black;
 }
 
 .show {
@@ -52,14 +84,24 @@
 
 
 .label {
-    margin-right: 20px;
-    width: 20%;
+    margin: 20px 20px 5px 0;
+    width: 80%;
     user-select: none;
 }
 
-#password,
-#email {
-    width: 50%;
+.sub-label {
+    margin: 2px 0 0 2px;
+    color: lightgrey;
+    opacity: .8;
+    font-size: .75em;
+}
+
+.sub-label.second {
+    opacity: .5;
+}
+
+input {
+    /* width: 90%; */
     padding: 10px 20px;
     border-radius: 5px;
     background-color: transparent;
@@ -70,17 +112,15 @@
     color: whitesmoke;
 }
 
-#password::placeholder,
-#email::placeholder {
+input::placeholder {
     color: lightgrey;
     margin-left: 10px;
-    opacity: .8;
+    opacity: .5;
 }
 
 
 
-#password:focus-visible,
-#email:focus-visible {
+input:focus-visible {
     outline: none;
     box-shadow:
         inset 0 0 5px var(--bubble-grey-dark),
