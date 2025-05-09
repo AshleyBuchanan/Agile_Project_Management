@@ -58,6 +58,7 @@ body {
 
     --bad-credential-bg-color: hsl(0, 50%, 40%);
     --welcome-aboard-bg-color: hsl(120, 70%, 80%);
+    --welcome-aboard-bg-color-dark: hsl(120, 30%, 50%);
 
     --blue-skies: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }

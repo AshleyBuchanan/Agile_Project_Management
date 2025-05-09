@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="/css/create.css">
 </head>
 <body>
-
+    <div id="hidden-data"><%-usernames%></div>
     <div class="main-flex">
         <div class="main-container">
             <div class="welcome">
                 <div class="top">
                     <div class="column">
                         <div class="label">What's your name?</div>
-                        <input type="text" name="first" id="first" placeholder="what would you like to be called?">
+                        <div class="refer-container"><input type="text" name="name" id="name" placeholder="what would you like to be called?"><span class="embedded embedded-red">Already Taken.</span></div>
                         <div class="label">What's a good email address?</div>
                         <input type="email" name="email" id="email" placeholder="your_email@somewhere.com">
                         <div class="sub-label">Any legit address will do. It's not for contacting you.</div>
@@ -28,11 +28,13 @@
                 <div class="center">
                     <div class="column">
                         <div class="label">What's your job title?</div>
-                        <input type="text" name="job-title" id="job-title" placeholder="job title">
+                        <div class="refer-container"><input type="text" name="job-title" id="job-title" placeholder="job title"><span class="embedded">You can fill these out later if you want.</span></div>
+                        
                         <div class="label">What department are you in?</div>
-                        <input type="text" name="department" id="department" placeholder="department">
+                        <div class="refer-container"><input type="text" name="department" id="department" placeholder="department"><span class="embedded">You can fill these out later if you want.</span></div>
+                        
                         <div class="label">Your organization?</div>
-                        <input type="text" name="organization" id="organization" placeholder="organization">
+                        <div class="refer-container"><input type="text" name="organization" id="organization" placeholder="organization"><span class="embedded">You can fill these out later if you want.</span></div>
                  
                     </div>
                 </div>
@@ -44,14 +46,17 @@
                     </div>
                 </div>
             </div>
-            <div class="welcome-bottom">
-                <div class="welcome-aboard">
-                    <p>Welcome aboard.</p><p>May your projects come into fruition.</p><p>We're here to <span class="cursive">simplify</span>.</p>
+                <div class="welcome-bottom">
+                    <div class="welcome-aboard">
+                        <p>Welcome aboard.</p><p>May your projects come into fruition.</p><p>We're here to <span class="cursive">simplify</span> .</p>
+                    </div>
+                    <div class="finished disabled">
+                        <p>Looks good and you're <span class="cursive">ready to go</span> .</p>
+                        <div id="finished-button" class="form-button">Ready</div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
-
     <script src="/js/create.js"></script>
 </body>
 </html>

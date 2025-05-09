@@ -119,6 +119,7 @@ function fadeOut(href) {
         if (href) window.location.href = href;
     }, 250);
 }
+
 //initial check for pre-populated email
 if (validEmail() === true) {
     _login.classList.remove('disabled');

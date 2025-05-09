@@ -16,17 +16,23 @@ async function getData() {
     const { tasksCollection, usersCollection } = await connectToMongo();
     const tasks = await tasksCollection.find().toArray();
     const users = await usersCollection.find().toArray();
-    return { tasks, users };
+
+    const uniqueNames = new Set();
+    users.forEach(user => {
+        uniqueNames.add(user.name);
+    });
+    usernames = Array.from(uniqueNames);
+    return { tasks, users, usernames };
 }
-let tasks = [];
-let users = [];
+
+let tasks, users, usernames;
 let loggedUsers = new Set();
 
 (async () => {
     try {
-        ({ tasks, users } = await getData());
+        ({ tasks, users, usernames } = await getData());
     } catch (err) {
-        console.error('Failed to load tasks.');
+        console.error('Failed to load tasks.', err);
     }
 })();
 
@@ -119,9 +125,10 @@ app.post('/logout', async (req, res) => {
         res.json({ response: 'false' });
     }
 });
-app.get('/create', (req, res) => {
+app.get('/create', async (req, res) => {
     console.log('Serving Create Account Page *****');
-    res.render('create');
+    console.log(usernames);
+    res.render('create', { usernames: usernames });
 });
 
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
