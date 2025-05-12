@@ -106,8 +106,28 @@ app.post('/login', async (req, res) => {
     console.log('-', email);
     console.log('-', password);
 
-    const foundUser = users.find(user => user.email === email);
-    if (foundUser && await bcrypt.compare(password, foundUser.pass)) {
+    const foundUser = await User.findOne({ email });
+
+    let isMatch = false;
+
+    if (foundUser) {
+        if (foundUser.pass.startsWith('$2')) {
+            // Likely a bcrypt hash
+            isMatch = await bcrypt.compare(password, foundUser.pass);
+        } else {
+            // Plain text password fallback
+            isMatch = (password === foundUser.pass);
+            if (isMatch) {
+                // Migrate to bcrypt
+                const hashed = await bcrypt.hash(password, 10);
+                foundUser.pass = hashed;
+                await foundUser.save();
+                console.log('Password migrated to bcrypt.');
+            }
+        }
+    }
+
+    if (isMatch) {
         loggedUsers.add(foundUser._id);
         console.log(loggedUsers);
         try {
