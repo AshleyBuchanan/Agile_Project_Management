@@ -92,7 +92,6 @@ app.post('/tasks', async (req, res) => {
     const { names } = req.body;
     res.json(tasks);
 });
-
 app.get('/login', (req, res) => {
     page = 'login';
     res.render('login', { page });
@@ -193,7 +192,6 @@ app.post('/create', async (req, res) => {
         res.json({ response: false });
     }
 });
-
 app.post('/uniquenessCheck', (req, res) => {
     const { email: emailAddress } = req.body;
     console.log(emailAddress);
@@ -201,7 +199,9 @@ app.post('/uniquenessCheck', (req, res) => {
     console.log(foundEmail);
     res.json({ foundEmail });
 });
+app.get('/profile', (req, res) => {
 
+});
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
 
 

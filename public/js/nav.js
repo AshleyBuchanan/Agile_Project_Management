@@ -24,7 +24,7 @@ function logoutRequest(userId) {
         if (xhr.status === 200) {
             const { response } = JSON.parse(xhr.responseText);
             if (response === 'true') logout(userId);
-            if (response === 'false') no_logout(userId);
+            if (response === 'false') no_logout(userId);    //<-come back to this!
         } else {
             console.error('Something went wrong:', xhr.status);
         }
@@ -45,6 +45,7 @@ userButton.innerText = currentUser.split(' ')[0];   // <- only use first name he
 userButton.addEventListener('click', e => {
     const timer = 500;
     if (userInfo.classList.contains('show')) {
+        userButton.classList.remove('active');
         userInfo.classList.remove('show');
         setTimeout(() => {
             userInfo.classList.remove('display');
@@ -52,6 +53,7 @@ userButton.addEventListener('click', e => {
     } else {
         userInfo.classList.add('show');
         userInfo.classList.add('display');
+        userButton.classList.add('active');
     }
 
 });
