@@ -188,7 +188,6 @@ input:focus-visible {
 
 .disabled {
     opacity: 0;
-    cursor: default;
 }
 
 .show {

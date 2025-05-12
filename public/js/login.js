@@ -1,7 +1,16 @@
 const body = document.querySelector('.main-container');
-setTimeout(() => {
-    body.style.opacity = 1;
-}, 500);
+function fadeInBody() {
+    setTimeout(() => {
+        body.style.opacity = 1;
+    }, 500);
+}
+
+window.addEventListener('load', fadeInBody);
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        fadeInBody();
+    }
+});
 
 //email
 const _email = document.querySelector('#email');

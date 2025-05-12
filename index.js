@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -7,10 +8,24 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/APM_Main_DB', {})
     .then(() => console.log('Mongoose  successfully  connected'))
     .catch(err => console.error('Mongoose connection error:', err));
+
 const loggedUserSchema = new mongoose.Schema({
     loggedOn: [mongoose.Schema.Types.Mixed] // or ObjectId if strictly ObjectIds
 });
 const LoggedUser = mongoose.model('LoggedUser', loggedUserSchema, 'APM_LoggedOn_Collection');
+
+const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    job: String,
+    dept: String,
+    org: String,
+    pass: String, // Note: In production, hash passwords with bcrypt
+    teams: Array,
+    epics: Array,
+    tasks: Array,
+});
+const User = mongoose.model('User', userSchema, 'APM_Users_Collection');
 
 async function getData() {
     const { tasksCollection, usersCollection } = await connectToMongo();
@@ -91,8 +106,8 @@ app.post('/login', async (req, res) => {
     console.log('-', email);
     console.log('-', password);
 
-    const foundUser = users.find(user => user.email === email && user.pass === password);
-    if (foundUser) {
+    const foundUser = users.find(user => user.email === email);
+    if (foundUser && await bcrypt.compare(password, foundUser.pass)) {
         loggedUsers.add(foundUser._id);
         console.log(loggedUsers);
         try {
@@ -129,6 +144,42 @@ app.get('/create', async (req, res) => {
     console.log('Serving Create Account Page *****');
     console.log(usernames);
     res.render('create', { usernames: usernames });
+});
+app.post('/create', async (req, res) => {
+    console.log('Making New Account In Database ***');
+    const { name, email, job, dept, org, pass } = req.body;
+    console.log(name, email, job, dept, org, pass);
+    try {
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(pass, saltRounds);
+        const newUser = new User({
+            name,
+            email,
+            job,
+            dept,
+            org,
+            pass: hashedPassword
+        });
+
+        const savedUser = await newUser.save();
+        users.push(savedUser);
+        console.log('User saved successfully:', savedUser);
+        res.json({
+            response: true,
+            user_id: savedUser._id,
+        });
+    } catch (err) {
+        console.error('Error saving user:', err.message);
+        res.json({ response: false });
+    }
+});
+
+app.post('/uniquenessCheck', (req, res) => {
+    const { email: emailAddress } = req.body;
+    console.log(emailAddress);
+    const foundEmail = users.some(user => user.email === emailAddress);
+    console.log(foundEmail);
+    res.json({ foundEmail });
 });
 
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));

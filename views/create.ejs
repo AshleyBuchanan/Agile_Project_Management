@@ -16,10 +16,12 @@
             <div class="welcome">
                 <div class="top">
                     <div class="column">
+                        <input type="text" name="username" autocomplete="off" style="display: none;">
+                        <input type="password" name="fake-password" autocomplete="off" style="display: none;">
                         <div class="label">What's your name?</div>
-                        <div class="refer-container"><input type="text" name="name" id="name" placeholder="what would you like to be called?"><span class="embedded embedded-red">Already Taken.</span></div>
+                        <div class="refer-container"><input type="text" name="name" id="name" placeholder="what would you like to be called?"><span class="embedded embedded-red embedded-name">Already taken.</span></div>
                         <div class="label">What's a good email address?</div>
-                        <input type="email" name="email" id="email" placeholder="your_email@somewhere.com">
+                        <div class="refer-container"><input type="text" name="email" id="email" placeholder="your_email@somewhere.com"><span class="embedded embedded-red embedded-email">Already registered.</span></div>
                         <div class="sub-label">Any legit address will do. It's not for contacting you.</div>
                         <div class="sub-label second">We'll use it along with a unique identifier for saving your work.</div>
                     </div>
@@ -35,7 +37,6 @@
                         
                         <div class="label">Your organization?</div>
                         <div class="refer-container"><input type="text" name="organization" id="organization" placeholder="organization"><span class="embedded">You can fill these out later if you want.</span></div>
-                 
                     </div>
                 </div>
                 <div class="bottom">
@@ -55,6 +56,7 @@
                         <div id="finished-button" class="form-button">Ready</div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
     <script src="/js/create.js"></script>
