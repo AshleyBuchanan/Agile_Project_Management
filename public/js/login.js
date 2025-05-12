@@ -30,7 +30,7 @@ const commonEmailExtensions = [
     '.org',
     '.edu',
     '.gov',
-    '.co',
+    // '.co', //<- this one bothers me
     '.us',
     '.info',
     '.biz',

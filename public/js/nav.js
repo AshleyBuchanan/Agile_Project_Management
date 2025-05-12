@@ -36,9 +36,12 @@ function logoutRequest(userId) {
 const userButton = document.querySelector('#logged-user');
 const userInfo = document.querySelector('.nav-user-info');
 const userEmail = document.querySelector('.nav-user-info-profile-email');
+const userName = document.querySelector('.nav-user-info-profile-name');
 const { currentUser, currentEmail } = getCurrentUser(); // <- login writes who to localStorage at login success.
+
 userEmail.innerText = currentEmail;
-userButton.innerText = currentUser;
+userName.innerText = `- ${currentUser} -`;
+userButton.innerText = currentUser.split(' ')[0];   // <- only use first name here
 userButton.addEventListener('click', e => {
     const timer = 500;
     if (userInfo.classList.contains('show')) {

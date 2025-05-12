@@ -49,6 +49,9 @@ a {
     color: whitesmoke;
     align-content: center;
     flex: 0 0 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav-link:hover,
@@ -96,7 +99,7 @@ input[type='search']::placeholder {
 .nav-user-info-profile-email {
     width: 80%;
     margin: 5%;
-    padding: 5%;
+    padding: 3% 5% 7% 5%;
     text-align: center;
     font-size: large;
     background-color: var(--bubble-grey-light);
@@ -126,6 +129,27 @@ input[type='search']::placeholder {
     margin-top: 5%;
     padding: 5%;
     cursor: pointer;
+}
+
+.refer-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 100%;
+}
+
+.embedded {
+    color: black;
+    text-shadow: 0 0 1px var(--panel-grey-dark);
+    opacity: .35;
+    position: absolute;
+    pointer-events: none;
+    font-size: .85em;
+    transform-origin: center;
+    translate: 50%;
+    right: 50%;
+    bottom: 30px;
+    pointer-events: none;
 }
 
 .show {

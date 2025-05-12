@@ -112,6 +112,42 @@ p {
     flex: 1 1 100%;
 }
 
+.embedded {
+    color: lightgrey;
+    opacity: .5;
+    position: absolute;
+    pointer-events: none;
+    font-size: .75em;
+    right: 20px;
+    top: 13px;
+}
+
+.embedded-image,
+.embedded-red {
+    color: var(--epic-bg-color);
+    transition: opacity 500ms;
+    opacity: 0;
+}
+
+.embedded-image {
+    top: 8px;
+}
+
+#a-length,
+#a-number,
+#a-capital,
+#a-symbol {
+    font-size: .75rem;
+    transition: all 250ms;
+}
+
+.highlighted {
+    text-shadow:
+        0 0 3px var(--welcome-aboard-bg-color),
+        0 0 1px black;
+    color: var(--welcome-aboard-bg-color);
+}
+
 input {
     /* width: 90%; */
     flex: 1 1 100%;
@@ -136,22 +172,6 @@ input:focus-visible {
     box-shadow:
         inset 0 0 5px var(--bubble-grey-dark),
         0 0 20px var(--bubble-grey-light);
-}
-
-.embedded {
-    color: lightgrey;
-    opacity: .5;
-    position: absolute;
-    pointer-events: none;
-    font-size: .75em;
-    right: 20px;
-    top: 13px;
-}
-
-.embedded-red {
-    color: var(--epic-bg-color);
-    transition: opacity 500ms;
-    opacity: 0;
 }
 
 .form-button {

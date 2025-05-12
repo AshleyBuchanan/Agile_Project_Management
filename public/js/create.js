@@ -12,7 +12,7 @@ const commonEmailExtensions = [
     '.org',
     '.edu',
     '.gov',
-    '.co',
+    // '.co', //<- this one bothers me
     '.us',
     '.info',
     '.biz',
@@ -70,8 +70,9 @@ const welcomeAboard = document.querySelector('.welcome-aboard');
 const finished = document.querySelector('.finished');
 const finishedButton = document.querySelector('#finished-button');
 
-const nameTaken = document.querySelector('.embedded-name');
 const emailTaken = document.querySelector('.embedded-email');
+const emailCheck = document.querySelector('#email-check');
+const nameTaken = document.querySelector('.embedded-name');
 const usernamesStr = document.querySelector('#hidden-data').innerText;
 const usernames = new Set(usernamesStr.split(',').map(item => item.trim()));
 
@@ -106,8 +107,14 @@ function uniquenessCheck() {
         if (xhr.status === 200) {
             const { foundEmail: response } = JSON.parse(xhr.responseText);
             emailChecked = true;
-            if (response === true) emailTaken.classList.add('show');
-            if (response === false) emailTaken.classList.remove('show');
+
+            if (response === true) {
+                emailTaken.classList.add('show');
+                emailCheck.classList.remove('show');
+            } else {
+                emailTaken.classList.remove('show');
+                emailCheck.classList.add('show');
+            }
             toggleFinishedState();
         } else {
             console.error('Something went wrong:', xhr.status);
@@ -161,18 +168,45 @@ function validEmail() {
     }
 }
 
+function updatePasswordHints() {
+    const val = passwordInput.value;
+
+    const numberHint = document.querySelector('#a-number');
+    const capitalHint = document.querySelector('#a-capital');
+    const symbolHint = document.querySelector('#a-symbol');
+    const lengthHint = document.querySelector('#a-length');
+    const passwordCheck = document.querySelector('#password-check');
+
+    if (/\d/.test(val)) numberHint.classList.add('highlighted');
+    else numberHint.classList.remove('highlighted');
+
+    if (/[A-Z]/.test(val)) capitalHint.classList.add('highlighted');
+    else capitalHint.classList.remove('highlighted');
+
+    if (/[\W_]/.test(val)) symbolHint.classList.add('highlighted');
+    else symbolHint.classList.remove('highlighted');
+
+    if (val.length >= 8) lengthHint.classList.add('highlighted');
+    else lengthHint.classList.remove('highlighted');
+
+    if (validPassword() === true) passwordCheck.classList.add('show');
+    else passwordCheck.classList.remove('show');
+}
+
 function validPassword() {
     return passwordRegex.test(passwordInput.value);
 }
 
 emailInput.addEventListener('input', () => {
+    emailCheck.classList.remove('show');
     emailTaken.classList.remove('show');    // reset when user modifies email
     emailChecked = false;
-    validEmail();                           // kicks off uniquenessCheck
+    //validEmail();                           // kicks off uniquenessCheck
     toggleFinishedState();
 });
 
 passwordInput.addEventListener('input', () => {
+    updatePasswordHints();
     toggleFinishedState();
 });
 
