@@ -106,6 +106,7 @@ app.post('/login', async (req, res) => {
     console.log('-', password);
 
     const foundUser = await User.findOne({ email });
+    console.log(foundUser);
 
     let isMatch = false;
 

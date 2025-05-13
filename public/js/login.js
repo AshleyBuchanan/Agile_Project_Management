@@ -104,7 +104,7 @@ function authorized(name, id, email) {
 }
 
 function loginRequest() {
-    console.log('in');
+    //console.log('in');
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
