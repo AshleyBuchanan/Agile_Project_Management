@@ -1,0 +1,100 @@
+.main-container {
+    opacity: 1;
+    transition: opacity 500ms;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.profile-form,
+.teams-form,
+.profile-form-bottom,
+.teams-form-bottom {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 90%;
+    margin: 0 40px 0 0;
+    border-radius: 5px;
+    flex: 0 0 700px;
+    align-self: center;
+    background-color: var(--bubble-grey);
+    box-shadow: -.25px 1px 4px var(--bubble-grey);
+    padding: 10px;
+}
+
+.profile-form {
+    margin-left: 40px;
+}
+
+.profile-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    /* border: 1px solid var(--bubble-grey-dark); */
+    box-shadow: inset 0 2px 5px black;
+    background-color: var(--bubble-grey-light);
+    background-image: url('../bgs/photo-1744029829181-ad19c2ee248b.jpg');
+    background-size: cover;
+    background-position: 50%;
+}
+
+.profile-heading {
+    width: 100%;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 30%;
+    transition: opacity 1s;
+    /* border: 1px solid black; */
+}
+
+.refer-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 100%;
+}
+
+.profile-embedded {
+    right: 10px;
+    top: 10px;
+    color: black;
+    position: absolute;
+    cursor: pointer;
+}
+
+.profile-embedded-edit {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../icons/edit1white_icon.png');
+    /* border: 1px solid black; */
+}
+
+.profile-embedded-avatar {
+    position: absolute;
+    left: 10;
+    top: 50%;
+    translate: 10px -50%;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* border: 1px solid black; */
+}
+
+.profile-embedded-avatar-image {
+    width: 100%;
+}
+
+.profile-embedded-edit:hover {
+    background-image: url('../icons/edit1whitehover_icon.png');
+}

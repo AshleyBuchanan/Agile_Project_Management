@@ -136,7 +136,7 @@ function makeTaskElement(t) {
 
     const userText = document.createElement('div');
     userText.className = 'task-id task-user-right';
-    userText.innerText = t.assignee.name;
+    userText.innerText = t.assignee.name.split(' ')[0];
     block.append(userText);
 
     return block;

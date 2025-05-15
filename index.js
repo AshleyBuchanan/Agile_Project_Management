@@ -79,6 +79,7 @@ app.post('/sprints', async (req, res) => {
             });
         }
     });
+    console.log(matchedTasks);
     res.json(matchedTasks);
 });
 app.get('/tasks', (req, res) => {
@@ -106,7 +107,7 @@ app.post('/login', async (req, res) => {
     console.log('-', password);
 
     const foundUser = await User.findOne({ email });
-    console.log(foundUser);
+    console.log(foundUser.name);
 
     let isMatch = false;
 
@@ -201,7 +202,7 @@ app.post('/uniquenessCheck', (req, res) => {
     res.json({ foundEmail });
 });
 app.get('/profile', (req, res) => {
-
+    res.render('profile');
 });
 app.listen(port, () => console.log(`APM_Server listening on port:${port}`));
 
